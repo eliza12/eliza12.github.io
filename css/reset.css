@@ -1,0 +1,15 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	font-family: Arial, Verdana, Times New Roman;
+	letter-spacing: 0.032px;
+}
+
+.clearfix::before, .clearfix::after {
+	content: "";
+	display: table;
+}
+
+.clearfix::after {
+	clear: both;
+}

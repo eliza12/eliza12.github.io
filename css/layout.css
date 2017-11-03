@@ -1,0 +1,299 @@
+.main-container-wrapper {
+	width: 100%;
+	margin: 0px 0px;
+}
+
+.header-wrapper {
+	width: 100%;
+}
+
+.header-top-wrapper {
+	width: 100%;
+}
+
+.header-top {
+	width: 939px;
+	margin: 0 auto;
+	padding: 16px 20px;
+}
+
+.logo {
+	width: 223px;
+	float: left;
+	margin-top: 4px;
+}
+
+.search-area {
+	margin-left: 24px;
+	margin-right: 24px;
+	margin-top: 15px;
+	width: 343px;
+	float: left;
+	padding: 9px 0;
+}
+
+.search-box {
+	width: 260px;
+	height: 20px;
+	padding: 0px 8px;
+	float: left;
+}
+
+.search-box input[type="text"] {
+	width: 240px;
+	padding: 2px 0px;
+}
+
+.search-box img {
+	padding-left: 7px;
+}
+
+.search-button {
+	margin: 0 7px;
+	padding: 0px;
+	width: 53px;
+	float: right;
+	height: 20px;
+}
+
+.search-button button {
+	width: 100%;
+	/*height: auto;*/
+}
+
+.user-info {
+	width: auto;
+	float: right;
+	padding: 3px 0;
+}
+
+.user-name {
+	padding: 10px 0;
+}
+
+.user-nav ul{
+	list-style-type: none;
+}
+
+.user-nav ul li {
+	width: auto;
+	float: left;
+	padding: 0px 8px;
+	line-height: 10px;
+}
+
+.header-bottom {
+	width: 938px;
+	margin: 0 auto;
+	padding: 11px 20px;
+}
+
+.main-menu {
+	width: auto;
+	float: left;
+	margin-left: -6px;
+}
+
+.main-menu ul{
+	list-style-type: none;
+}
+
+.main-menu ul li {
+	width: auto;
+	float: left;
+	padding: 0 16px;
+}
+
+.notification-menu {
+	width: auto;
+	float: right;
+	/*margin-right: -25px;*/
+}
+
+.notification-menu ul {
+	list-style-type: none;
+}
+
+.notification-menu ul li {
+	width: auto;
+	float: left;
+	padding: 0px 24px;
+}
+
+.body-wrapper {
+
+}
+
+.col3-left-layout {
+	width: 938px;
+	margin: 30px auto;
+	padding: 0px 20px;
+}
+
+.left {
+	width: 194px;
+	float: left;
+}
+
+.block-title {
+	line-height: 42px;
+	padding: 0px 12px;
+	margin: 0px;
+}
+
+.block-lists {
+	/*padding: 4px 0px;*/
+}
+
+.block-lists ul {
+	list-style-type: none;
+}
+
+.block-lists ul li {
+	margin: 0px;
+}
+
+.block-lists ul li p {
+	width: 136px;
+	float: left;
+	line-height: 16px;
+}
+
+.block-lists ul li p a {
+	width: 100%;
+}
+
+.block-lists ul li span {
+	width: auto;
+	float: right;
+}
+
+.block-lists ul li a{
+	display: block;
+	padding: 10px 12px;
+}
+
+.main-right {
+	width: 744px;
+	float: right;
+}
+
+.main-container {
+	width: 514px;
+	float: left;
+	margin-left: 25px;
+	margin-right: 25px;
+	padding: 0px 2px;
+}
+
+.main-heading {
+	padding-top: 12px;
+	padding-bottom: 20px;
+	line-height: 0px;
+}
+
+.all-entries {
+	width: 50%;
+	float: left;
+	padding: 12px 0px;
+}
+
+.subscribed {
+	width: 50%;
+	float: right;
+	padding: 12px 0px;
+}
+
+.tabs {
+	padding: 0px 5px;
+}
+
+.tabs ul {
+	list-style-type: none;
+}
+
+.tabs ul li {
+	width: 114px;
+	float: left;
+	margin: 0px 5px;
+	
+}
+
+.tabs ul li a{
+	display: block;
+	line-height: 28px;
+}
+
+.tab-contents {
+	padding-top: 13px;
+	padding-bottom: 13px;
+}
+
+.display-picture {
+	width: 70px;
+	float: left;
+	position: relative;
+}
+
+.image-frame {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+.main-tab-contents {
+	width: 435px;
+	float: right;
+}
+
+.main-tab-contents div.publisher-info {
+	padding: 4px 0px;
+}
+
+.main-tab-contents div.publisher-info ul {
+	list-style-type: none;
+}
+
+.main-tab-contents div.publisher-info ul li{
+	width: auto;
+	float: left;
+	padding: 0px 6px;
+}
+
+hr {
+	width: 100%;
+	border-color: #d8d8d8;
+}
+
+.right {
+	width: 176px;
+	float: right;
+}
+
+.footer {
+	width: 938px;
+	margin: 0 auto;
+	padding: 20px 20px;
+}
+
+.footer-nav {
+	width: auto;
+	float: left;
+}
+
+.footer-nav ul{
+	list-style-type: none;
+	margin-left: -5px;
+}
+
+.footer-nav ul li {
+	width: auto;
+	float: left;
+	padding-left: 10px;
+	padding-right: 7px;
+}
+
+.footer p{
+	width: auto;
+	float: right;
+}

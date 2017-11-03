@@ -1,0 +1,288 @@
+a{
+	color: #000;
+	text-decoration: none;
+}
+
+.header-top-wrapper {
+	background-color: #7dd9e8;
+}
+
+.header-top {
+	background: inherit;
+}
+
+.search-area {
+}
+
+.search-box {
+	background: url("../images/search-box.png");
+	line-height: 19px;
+}
+
+.search-box input[type="text"] {
+	background: transparent;
+	border: none;
+	font-size: 10px;
+}
+
+.search-button {
+	background: url("../images/search-button.png") no-repeat;
+	color: #fff;
+	text-decoration: none;
+	font-size: 9px;
+	line-height: 20px;
+}
+
+.search-button button {
+	background: transparent;
+	color: #fff;
+	font-size: 9px;
+	border: none;
+	
+}
+
+/*.search-button a{
+	display: block;
+	color: #fff;
+	text-decoration: none;
+	font-size: 9px;
+	text-align: center;
+}*/
+
+.user-name {
+	text-align: right;
+	padding: 5px 0;
+	font-size: 18px;
+	font-family: Arial;
+}
+
+.user-nav ul li:last-child {
+	padding-right: 2px;
+}
+
+.user-nav ul li a {
+	color: #000;
+	text-decoration: none;
+	font-family: Arial;
+	font-size: 11px;
+}
+
+.user-info .user-nav ul li+li {
+	background: url("../images/list-divider.png") repeat-y left;
+}
+
+.header-bottom-wrapper {
+	background-color: #f5f5f5;
+	width: 100%;
+}
+
+.header-bottom {
+	background: inherit;
+}
+
+.main-menu ul li {
+	font-size: 14px;
+	font-family: Verdana;
+}
+
+.main-menu ul li a {
+	color: #000;
+	text-decoration: none;
+}
+
+.notification-menu ul li {
+	font-size: 12px;
+	font-family: Verdana;
+}
+
+.notification-menu ul li:last-child {
+	padding-right: 0px;
+}
+
+.notification-menu ul li a{
+	color: #000;
+	text-decoration: none;
+}
+.topic-box-invite.active {
+	background: url("../images/invites-blue.png") no-repeat left center;
+}
+
+.topic-box-invite{
+	background: url("../images/invites-gray.png") no-repeat left center;
+}
+
+.friend-request {
+	background: url("../images/friend-gray.png") no-repeat left center;
+}
+
+.friend-request.active {
+	background: url("../images/friend-blue.png") no-repeat left center;
+}
+
+.col3-left-layout {
+	background: url("../images/container-background.png") repeat-y center;
+}
+
+.block-title {
+	font-size: 18px;
+	font-family: Arial;
+	color: #fff;
+	background-color: #2fc1da;
+}
+
+.block-lists ul li {
+	font-family: Arial;
+	font-size: 11px;
+}
+
+.block-lists ul li:hover {
+	background-color: #fff;
+}
+
+
+.main-heading {
+	font-size: 28px;
+	font-family: Verdana;
+	letter-spacing: 0.032px;
+}
+
+.tab-panel {
+	background: url("../images/tab-background.png") no-repeat center;
+}
+
+.all-entries {
+	font-size: 14px;
+	text-align: center;
+}
+
+.subscribed {
+	font-size: 14px;
+	text-align: center;
+}
+
+.tabs {
+	border-bottom: 2px solid #2fc1da;
+}
+
+.tabs ul li {
+	background: url("../images/tab-bg-gray.png") no-repeat center ;
+	text-align: center;
+}
+
+.tabs ul li a {
+	font-size: 11px;
+	text-align: center;	
+}
+
+.tabs ul li.active {
+	background: url("../images/tab-bg-blue.png") no-repeat center;
+	color: #fff;
+}
+
+.tabs ul li:hover {
+	background: url("../images/tab-bg-blue.png") no-repeat center;
+	color: #fff;
+}
+
+.tabs ul li.active a{
+	color: #fff;
+}
+
+.tabs ul li:hover a {
+	color: #fff;
+}
+
+.tabs ul li.entries-last {
+	margin-right: 9px;
+}
+
+.tabs ul li.subscribed-first {
+	margin-left: 9px;
+}
+
+.tab-contents{
+	background: url("../images/line-divider.png") repeat-x bottom;
+}
+
+.main-tab-contents p {
+	font-size: 11px;
+}
+
+.main-tab-contents p.first-element {
+	padding-top: 0px;
+}
+
+.main-tab-contents h2.main-link {
+	font-size: 14px;
+	font-weight: normal;
+}
+
+.main-tab-contents p.main-link a{
+	color: #000;
+}
+
+.main-tab-contents div.publisher-info {
+	font-size: 11px;
+}
+
+.main-tab-contents div.publisher-info ul li{
+	background: url("../images/list-divider.png") repeat-y right top;
+}
+
+.main-tab-contents div.publisher-info ul li:first-child {
+	padding-left: 0px;
+}
+
+.main-tab-contents div.publisher-info ul li:last-child {
+	background: none;
+}
+
+.main-tab-contents div.publisher-info ul li a{
+	color: #50afc1;
+	text-decoration: none;
+}
+
+.main-tab-contents p.new {
+	padding: 2px 0;
+	color: #50afc1;
+} 
+
+.main-tab-contents p.invites {
+	padding: 2px 0;
+	color: #d53f1c;
+} 
+
+.main-tab-contents p ul {
+}
+
+.main-tab-contents p a {
+	color: #50afc1;
+	text-decoration: none;
+}
+
+.main-tab-contents div.publisher-info ul li.note a {
+	color: #93af5b;
+}
+
+.footer-wrapper {
+	background-color: #727272;
+}
+
+.footer {
+	color: #d4d4d4;
+	font-size: 10px;
+	background: inherit;
+}
+
+.footer-nav ul li {
+	background: url("../images/footer-nav-bg.png") no-repeat left 50%;
+}
+
+.footer-nav ul li:first-child {
+	background: none;
+}
+
+.footer-nav ul li a{
+	color: #d4d4d4;
+	text-decoration: none;
+}
