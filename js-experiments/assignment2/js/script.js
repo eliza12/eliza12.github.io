@@ -54,10 +54,11 @@ childImageSlider.appendChild(imageListUL);
 
 addImages();
 
-setInterval(function() {
-	slideNext();
+// var interval =  setInterval(function() {
+// 	slideNext();
+// 	console.log("text");
 
-}, 2000);
+// }, 2000);
 
 function addImages() {
 	for(var i=0; i<imageArray.length; i++) {
@@ -78,29 +79,33 @@ var x = 0;
 var counter = 0;
 
 function slideNext() {
-	counter++;
-	if(counter<=(imageArray.length-1)) {
+	// counter++;
+	// // console.log("counter is "+counter);
+	// if(counter<=(imageArray.length-1)) {
 		x-=300;
-		imageListUL.style.marginLeft = x+"px";
+		animateNextSlide(x);
+		// imageListUL.style.marginLeft = x+"px";
 		console.log(imageListUL.style.marginLeft);
 		console.log(counter);
-	}
-	else {
-		counter = imageArray.length-1;
-	}
+	// }
+	// else {
+	// 	console.log("else block")
+	// 	counter = imageArray.length-1;
+	// 	clearInterval(this.interval);
+	// }
 }
 
 function slidePrev() {
-	counter--;
-	if(counter>=0) {
+	// counter--;
+	// if(counter>=0) {
 		x+=300;
 		imageListUL.style.marginLeft = x+"px";
 		console.log(imageListUL.style.marginLeft);
 		console.log(counter);
-	}
-	else {
-		counter=0;
-	}
+	// }
+	// else {
+	// 	counter=0;
+	// }
 }
 
 
@@ -117,10 +122,18 @@ childButtonPrev.onclick = function() {
 var marginValue = 0;
 
 function animateNextSlide(x) {	
-	if(marginValue>-x) {
+	if(marginValue>x) {
 		marginValue-=10;
 		imageListUL.style.marginLeft = marginValue+"px";
-		setTimeout(function (){animateNextSlide();}, 10);
+		setTimeout(function (){animateNextSlide(x);}, 10);
+	}
+}
+
+function animatePrevSlide(x) {	
+	if(marginValue<x) {
+		marginValue+=10;
+		imageListUL.style.marginLeft = marginValue+"px";
+		setTimeout(function (){animateNextSlide(x);}, 10);
 	}
 }
 
