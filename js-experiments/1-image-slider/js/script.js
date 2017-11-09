@@ -54,12 +54,6 @@ childImageSlider.appendChild(imageListUL);
 
 addImages();
 
-// var interval =  setInterval(function() {
-// 	slideNext();
-// 	console.log("text");
-
-// }, 2000);
-
 function addImages() {
 	for(var i=0; i<imageArray.length; i++) {
 
@@ -79,39 +73,25 @@ var x = 0;
 var counter = 0;
 
 function slideNext() {
-	// counter++;
-	// // console.log("counter is "+counter);
-	// if(counter<=(imageArray.length-1)) {
+	if(counter<=(imageArray.length-2)) {
+		counter++;
 		x-=300;
 		animateNextSlide(x);
-		// imageListUL.style.marginLeft = x+"px";
-		console.log(imageListUL.style.marginLeft);
-		console.log(counter);
-	// }
-	// else {
-	// 	console.log("else block")
-	// 	counter = imageArray.length-1;
-	// 	clearInterval(this.interval);
-	// }
+	}
 }
 
 function slidePrev() {
-	// counter--;
-	// if(counter>=0) {
+	if(counter>0) {
+		counter--;
 		x+=300;
-		imageListUL.style.marginLeft = x+"px";
-		console.log(imageListUL.style.marginLeft);
-		console.log(counter);
-	// }
-	// else {
-	// 	counter=0;
-	// }
+		animatePrevSlide(x);
+	}
+
 }
 
 
 childButtonNext.onclick = function() {
 	slideNext();	
-	// animateNextSlide();
 };
 
 childButtonPrev.onclick = function() {
@@ -129,11 +109,10 @@ function animateNextSlide(x) {
 	}
 }
 
-function animatePrevSlide(x) {	
+function animatePrevSlide(x) {
 	if(marginValue<x) {
 		marginValue+=10;
 		imageListUL.style.marginLeft = marginValue+"px";
-		setTimeout(function (){animateNextSlide(x);}, 10);
+		setTimeout(function() {animatePrevSlide(x)}, 10);
 	}
 }
-
