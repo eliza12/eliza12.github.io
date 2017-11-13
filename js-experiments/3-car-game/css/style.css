@@ -1,0 +1,15 @@
+*{
+	padding: 0;
+	margin:0;
+}
+
+.game-container {
+	background: url("../images/road-background.jpg") repeat-y;
+	width: 600px;
+	height: 100%;
+	position: relative;
+}
+
+.game-car {
+	position: absolute;
+}
