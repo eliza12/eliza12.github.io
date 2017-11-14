@@ -1,0 +1,13 @@
+.main-container {
+	width: 800px;
+	height: 500px;
+	border: 1px solid black;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.game-container {
+	background: url("../images/background-night.png") repeat-x;
+	position: relative;
+	height: 500px;
+}
