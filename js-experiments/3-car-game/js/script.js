@@ -41,15 +41,12 @@ function Game(parentElement) {
 
 		homeContainer.appendChild(header);
 		homeContainer.appendChild(startButton);
-		this.gameContainer.appendChild(homeContainer);
-
-		
+		this.gameContainer.appendChild(homeContainer);	
 
 	}
 
 	this.start = function() {
 
-		
 		gameInterval = setInterval(function() {
 		 	that.backGround();
 		}, 50);
@@ -63,24 +60,21 @@ function Game(parentElement) {
 
 	}
 
-
 	this.backGround=function(){
 			marginValue += 10;
 			that.gameContainer.style.backgroundPosition = "center top " + marginValue + "px";
 
-			obstacleObjList.forEach(function(obstacle){
+			obstacleObjList.forEach(function(obstacle) {
 				obstacle.updatePosition();
 			});
 
-			carObjList.forEach(function(car){
-					if (car.killed==1) {
-							clearInterval(gameInterval);
-							clearInterval(obstacleInterval);
-							that.gameOver();
-					}
+			carObjList.forEach(function(car) {
+				if (car.killed==1) {
+					clearInterval(gameInterval);
+					clearInterval(obstacleInterval);
+					that.gameOver();
+				}
 			});
-
-
 	}
 
 	this.obstacleGenerator=function(){
@@ -104,30 +98,26 @@ function Game(parentElement) {
 		restartButton.style.marginTop="20px";
 		restartButton.style.marginLeft="45%";
 
-		restartButton.onclick=function(){
-				
-				that.gameContainer.removeChild(homeContainer);
-				that.restart();
+		restartButton.onclick=function(){		
+			that.gameContainer.removeChild(homeContainer);
+			that.restart();
 		}
 
 		homeContainer.appendChild(header);
 		homeContainer.appendChild(restartButton);
 		this.gameContainer.appendChild(homeContainer);
 
-
-
 	}
 
 	this.restart=function(){
+		
+		while (that.gameContainer.firstChild){
+			that.gameContainer.removeChild(that.gameContainer.firstChild);
+		}
 
-			while (that.gameContainer.firstChild){
-
-					that.gameContainer.removeChild(that.gameContainer.firstChild);
-			}
-
-			carObjList=[];
-			obstacleObjList=[];
-			that.start();
+		carObjList=[];
+		obstacleObjList=[];
+		that.start();
 	}
 
 }
@@ -168,31 +158,27 @@ function Car(parentElement) {
 				this.x = this.x + this.velocity*this.dx;
 				this.carElement.style.left = this.x+"px";
 			}	 
-
-
 		}
-
-
 	}
 
 	this.checkBoundary=function(){
 		
-
-		if(this.x<31 && this.dx<0){
+		if (this.x<31 && this.dx<0) {
 			this.dontMove = 1;
-		}else if(this.x>459 && this.dx>0){
+		}
+		else if (this.x>459 && this.dx>0) {
 			this.dontMove = 1;
-		}else{
+		}
+		else {
 			this.dontMove = 0;
 		}
-
 	}
 }
 
 
 function Obstacle(parentElement){
 
-	var that=this;
+	var that = this;
 	this.parentElement=parentElement;
 	this.obstacleElement=document.createElement("img");
 	this.obstacleElement.src="images/rock.png";
@@ -206,98 +192,89 @@ function Obstacle(parentElement){
 	this.obstacleElement.style.left=this.x+"px";
 	this.parentElement.appendChild(this.obstacleElement);
 
-	this.updatePosition=function(){
-		var collision=new Collision(this.parentElement);
+	this.updatePosition = function(){
+		var collision = new Collision(this.parentElement);
 		collision.carCollision();	
-		this.y=this.y+this.velocity;
+		this.y = this.y + this.velocity;
 		this.removeElement();
-		this.obstacleElement.style.top=this.y+"px";
+		this.obstacleElement.style.top = this.y + "px";
 	}
 
-	this.removeElement=function(){
+	this.removeElement = function(){
 
-				if(this.y>650){							
-						this.parentElement.removeChild(this.obstacleElement);
-						var tempObjectList=obstacleObjList;
-						obstacleObjList=[];
+		if(this.y>650) {							
+			this.parentElement.removeChild(this.obstacleElement);
 
-						tempObjectList.forEach(function(object){
-								if(object!=that){
-									obstacleObjList.push(object);
-								}
-						});
+			// console.log(obstacleObjList[indexOf(this.obstacleElement)]);
+			var tempObjectList = obstacleObjList;
+			obstacleObjList = [];
+
+			tempObjectList.forEach(function(object) {
+				if (object != that) {
+					obstacleObjList.push(object);
 				}
-
-
+			});
+		}
 	}
-
-
 }
 
 var gameObj = new Game(document.getElementById("main-container"));
 gameObj.init();
-
-
 
 function Collision(parentElement){
 	
 	var that=this;
 	this.parentElement=parentElement;
 
-	this.carCollision=function(){
+	this.carCollision=function() {
 
-		carObjList.forEach( function(car){
-				obstacleObjList.forEach(function(obstacle){
+		carObjList.forEach( function(car) {
+			obstacleObjList.forEach(function(obstacle) {
 
-						if (obstacle.y>car.y) {
-							//if obstacle is withn the car's width	
-							if(car.x<=obstacle.x&&car.x+car.width>=obstacle.x+obstacle.width){
-	
-								car.carElement.src="images/explosion.png";
-								car.carElement.style.width = "200px";
-								car.killed=1;								
-							} else if (obstacle.x+obstacle.width>car.x) {
-								car.carElement.src="images/explosion.png";
-								car.carElement.style.width = "200px";
-								car.killed=1;
-							}
+				this.collisionAction = function() {
+					car.carElement.src="images/explosion.png";
+					car.carElement.style.width = "200px";
+					car.killed=1;	
+				}
 
+				if (obstacle.y>car.y) {							
+					if(car.x+car.width > obstacle.x) {
+						if (car.x+car.width < obstacle.x+obstacle.width) {
+							this.collisionAction();
+							console.log("collision on right");
 						}
-
-				});
-
-
-		} );
-
-
+					}
+					if(obstacle.x+obstacle.width > car.x) {
+						if (obstacle.x+obstacle.width < car.x+car.width) {
+							this.collisionAction();
+							console.log("collision on left");
+						}
+					}
+				}
+			});
+		});
 	}
-
 }
-
-
 
 function getRandomInteger(min,max){
 		return Math.floor(Math.random()*max+min);
 }
 
 document.onkeydown = function(event) {
-		keyCodeValue = event.keyCode;
-
-
-			switch(keyCodeValue) {
-				case 37:
-				 	
-				 	carObjList.forEach(function(individualCar){
-				 			individualCar.movePosition(-1,0);
-				 	});
-
-					break;
-				case 39:
-				 	carObjList.forEach(function(individualCar){
-				 			individualCar.movePosition(1,0);
-				 	});
-					 
-					break;
-			}
-		
+	keyCodeValue = event.keyCode;
+	switch(keyCodeValue) {
+		case 37:
+			carObjList.forEach(function(individualCar) {
+				 individualCar.movePosition(-1,0);
+			});
+			break;
+		case 39:
+			carObjList.forEach(function(individualCar) {
+				individualCar.movePosition(1,0);
+			});	 
+			break;
+		case 32:
+			console.log("fire bullets");
+			break;
+	}		
 }
