@@ -1,6 +1,7 @@
 var gameInterval,obstacleInterval;
 var carObjList=[];
 var obstacleObjList=[];
+var bulletObjList = [];
 
 function Game(parentElement) {
 
@@ -75,6 +76,10 @@ function Game(parentElement) {
 					that.gameOver();
 				}
 			});
+
+			bulletObjList.forEach(function(bullet){
+				bullet.updatePosition();
+			});
 	}
 
 	this.obstacleGenerator=function(){
@@ -117,6 +122,7 @@ function Game(parentElement) {
 
 		carObjList=[];
 		obstacleObjList=[];
+		bulletObjList = [];
 		that.start();
 	}
 
@@ -179,22 +185,26 @@ function Car(parentElement) {
 function Obstacle(parentElement){
 
 	var that = this;
-	this.parentElement=parentElement;
-	this.obstacleElement=document.createElement("img");
-	this.obstacleElement.src="images/rock.png";
-	this.obstacleElement.style.position="absolute";
-	this.x=getRandomInteger(31,460);
-	this.y=0;
-	this.velocity=5;
-	this.width=60;
-	this.obstacleElement.style.width=this.width+"px";
-	this.obstacleElement.style.top=this.y+"px";
-	this.obstacleElement.style.left=this.x+"px";
+	this.destroyed = 0;
+	this.parentElement = parentElement;
+	this.obstacleElement = document.createElement("img");
+	this.obstacleElement.src = "images/rock.png";
+	this.obstacleElement.style.position = "absolute";
+	this.x = getRandomInteger(31,460);
+	this.y = 0;
+	this.velocity = 5;
+	this.width = 60;
+	this.height = 37;
+	this.obstacleElement.style.width = this.width+"px";
+	this.obstacleElement.style.height = this.height+"px";
+	this.obstacleElement.style.top = this.y+"px";
+	this.obstacleElement.style.left = this.x+"px";
 	this.parentElement.appendChild(this.obstacleElement);
 
 	this.updatePosition = function(){
 		var collision = new Collision(this.parentElement);
 		collision.carCollision();	
+		collision.bulletCollision();
 		this.y = this.y + this.velocity;
 		this.removeElement();
 		this.obstacleElement.style.top = this.y + "px";
@@ -202,7 +212,7 @@ function Obstacle(parentElement){
 
 	this.removeElement = function(){
 
-		if(this.y>650) {							
+		if(this.y>650 || this.destroyed == 1) {							
 			this.parentElement.removeChild(this.obstacleElement);
 
 			// console.log(obstacleObjList[indexOf(this.obstacleElement)]);
@@ -224,11 +234,11 @@ gameObj.init();
 function Collision(parentElement){
 	
 	var that=this;
-	this.parentElement=parentElement;
+	this.parentElement = parentElement;
 
-	this.carCollision=function() {
+	this.carCollision = function() {
 
-		carObjList.forEach( function(car) {
+		carObjList.forEach(function(car) {
 			obstacleObjList.forEach(function(obstacle) {
 
 				this.collisionAction = function() {
@@ -241,19 +251,92 @@ function Collision(parentElement){
 					if(car.x+car.width > obstacle.x) {
 						if (car.x+car.width < obstacle.x+obstacle.width) {
 							this.collisionAction();
-							console.log("collision on right");
 						}
 					}
 					if(obstacle.x+obstacle.width > car.x) {
 						if (obstacle.x+obstacle.width < car.x+car.width) {
 							this.collisionAction();
-							console.log("collision on left");
 						}
 					}
 				}
 			});
 		});
 	}
+
+	this.bulletCollision = function() {
+		bulletObjList.forEach(function(bullet) {
+			obstacleObjList.forEach(function(obstacle) {
+
+				this.bulletCollisionAction = function() {
+					obstacle.obstacleElement.src = "images/scattered-rock.png";
+					setTimeout(function() {
+						obstacle.destroyed = 1;
+					}, 20);
+					bullet.used = 1;
+				}
+			
+				if (bullet.y < obstacle.y+obstacle.height) {
+					if(obstacle.x+obstacle.width > bullet.x) {
+						if (obstacle.x+obstacle.width < bullet.x+bullet.width) {
+							this.bulletCollisionAction();
+						}
+					}
+					if(bullet.x+bullet.width > obstacle.x) {
+						if (bullet.x+bullet.width < obstacle.x+obstacle.width) {
+							this.bulletCollisionAction();
+						}
+					}
+				}
+			});
+		});
+	}
+}
+
+function Bullet (parentElement, carX, carY, carWidth, carHeight) {
+	this.parentElement = parentElement;
+
+	this.used = 0;
+
+	this.width = 20;
+	this.height = 50;
+	this.x = carX + carWidth/2-this.width/2;
+	this.y = carY;
+	this.bulletElement = document.createElement("img");
+	this.bulletElement.src = "images/bullet.png";
+	this.bulletElement.style.position = "absolute";
+	this.bulletElement.style.left = this.x + "px";
+	this.bulletElement.style.top = this.y + "px";
+	this.bulletElement.style.width = this.width + "px";
+	this.bulletElement.style.height = this.height + "px";
+
+	this.parentElement.appendChild(this.bulletElement);
+
+	this.updatePosition = function() {
+		this.y -= 20;
+		this.bulletElement.style.top = this.y + "px";
+		if (this.y < 0) {
+			this.used = 1;
+		}
+
+		this.removeBullet();
+	}
+
+	this.removeBullet = function() {
+		if (this.used == 1) {
+			this.parentElement.removeChild(this.bulletElement);
+		}
+
+		var tempObjList = bulletObjList;
+		bulletObjList = [];
+
+		tempObjList.forEach(function(object) {
+			if(object.used == 0) {
+				bulletObjList.push(object);
+			}
+		});
+		
+	}
+
 }
 
 function getRandomInteger(min,max){
@@ -274,7 +357,10 @@ document.onkeydown = function(event) {
 			});	 
 			break;
 		case 32:
-			console.log("fire bullets");
+			carObjList.forEach(function(individualCar) {
+				var bulletObj = new Bullet(individualCar.parentElement, individualCar.x, individualCar.y, individualCar.width, individualCar.height);
+				bulletObjList.push(bulletObj);
+			});
 			break;
 	}		
 }
