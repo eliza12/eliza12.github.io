@@ -1,12 +1,8 @@
 .select
 {
-	background-color: pink;
+	background-color: #3390FF;
 }
-#linenumbers
-{
-	background-color: #253945;
-	color: DimGray;
-}
+
 .curserWriteON
 {
 	border-left:solid 1px black;
@@ -22,15 +18,20 @@
 	border-left:0px;
 	background-color:Transparent;
 }
-#editor
-{
-	padding: 5px;
-	/*border-left: 1px solid #253945;
-	border-bottom: 1px solid #253945;*/
+
+#sourceCode {
+	display: none;
 }
+
+#editor {
+	padding: 5px;
+}
+
 #content
 {
-	color: #a9a9a9;
+	font-size: 18px;
+	color: #000;
+	font-family: monospace;
 }
 
 #cursorContainer {
@@ -39,7 +40,7 @@
 
 #pre1, #pre2, #post1, #post2,#xmlStart, #xmlFinish
 {
-	font-size:16px;
+	font-size:18px;
 	/*background-color: yellow;*/
 	filter:alpha(opacity=20);
 	opacity:0.2;
@@ -50,10 +51,9 @@
 }
 #secondary
 {
-	/*padding: 5px;*/
-	/*border: 1px solid black;*/
+	font-size: 18px;
 	color: #253945;
-	background-color: #f4f4f4; /*#253945;*/
+	font-family: monospace;
 }
 #editorinfo
 {
@@ -71,12 +71,12 @@ i	 {	color:PowderBlue; }
 /*	Javascript
 	natively white text, chalkboard color bg
 */
-b.jsLang{	color: Chocolate;}
-b.jsFun{	color: Cyan;}
+b.jsLang{	color: #006CF0;}
+b.jsFun{	color: #20C151;}
 b.jsObj{	color: Chartreuse;}
 b.jsMeth{	color: CornflowerBlue;}
 b.jsEvent{	color: CornflowerBlue;}
-b.jsNum{	color: Yellow;}
+b.jsNum{	color: brown;}
 b.jsRegx{	color: Cyan;}
 b.jsStr {	color: LawnGreen;}
 b.jsCom {	color: DimGray;}

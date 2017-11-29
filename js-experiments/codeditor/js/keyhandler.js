@@ -1,12 +1,3 @@
-/// <reference path="CopyPaste.js" />
-/// <reference path="Curser.js" />
-/// <reference path="Editor.js" />
-/// <reference path="Initializer.js" />
-//--
-/// <reference path="Selection.js" />
-/// <reference path="UndoRedo.js" />
-/// <reference path="Utilities.js" />
-
 
 function Keyhandler_Char(char, evt)
 {
@@ -17,9 +8,6 @@ function Keyhandler_Char(char, evt)
 		Selection.release();
 	}
 	
-	/*eliza*/
-	/*if(Intellisense.visible)
-		Intellisense.Commit(String.fromCharCode(char));*/
 	
 	var row = Editor.Row()
 	var col = Curser.Charcount();
@@ -40,7 +28,6 @@ function Keyhandler_Char(char, evt)
 	Editor.print();
 	
 	if(!htmlInEndTag && htmlInTag 
-		// && (htmlInHtml || Intellisense.isParsing == "XML")
 	&& (htmlIsAttributeName||!htmlIsTagName) && String.fromCharCode(char)==">")
 	{
 		// Intellisense.hide();
@@ -114,11 +101,6 @@ function Keyhandler_Meta(Meta, evt, e){
 			    EditorContent[row] = EditorContent[row].substr( 0, Curser.Charcount()-1 ) +  EditorContent[row].substr( Curser.Charcount(), EditorContent[row].length-1);
 			    Curser.move_le();
 			    Intellisense.word = Intellisense.word.substr(0,Intellisense.word.length-1)
-			  //   if(Intellisense.word.length>0)
-					// // Intellisense.display();
-			    	
-				// else
-				// 	Intellisense.hide();
 			}else if(row>0){
 			    var len = EditorContent[row-1].length
 			    UndoRedo.Delete( [row-1, EditorContent[row-1].length], "\n" );
@@ -441,9 +423,6 @@ function Keyhandler_Meta(Meta, evt, e){
 				}
 			
 			return true;
-		// case 45 : //INSERT
-		// 	Editor.overWriteMode = (Editor.overWriteMode)? false:true;
-		// 	return true;
 		case 46 : //Del
 			TimeDown(20);
 			if(evt.ctrlKey){
@@ -491,44 +470,6 @@ function Keyhandler_Meta(Meta, evt, e){
 			}
 			Editor.print(true);
 			return true;
-		// case 116 : //F5
-		// 	Editor.compile(true, true);
-		// 	evt.kill();
-		// 	break
-		// case 117 : //F6
-		// 	Editor.fillBuffer();
-		// 	evt.kill();
-		// 	Editor.print(true);
-		// 	break
-		// case 115 : //F4
-		// 	evt.kill();
-		// 	console.log("last word: '%s'", Editor.getLastWord() );
-		// 	break
-		// case 114 : //F3
-		// 	evt.kill();
-		// 	var p=new Date(); var sum = new FStringCat(); for (var i = 0; i < 50000; i++) {sum.push( i.toString() );};var f = sum.value(); 
-		// 	alert( (new Date()).getTime()-p.getTime() );
-		// 	break
-		// case 113 : //F2
-		// 	evt.kill();
-		// 	var p=new Date(); var sum = ""; for (var i = 0; i < 50000; i++) {sum+=i.toString();} 
-		// 	alert( (new Date()).getTime()-p.getTime() )
-		// 	break;
-		// case 118 : //F7
-		// 	evt.kill();
-		// 	var p=new Date(); 
-		// 	var j=0;
-		// 	var sum = "ajshdaklsdhjalkjhsdkljahsdlkjasd"; 
-		// 	for (var i = 0; i < 50000; i++) {
-		// 		j = sum.length;
-		// 	} 
-		// 	alert( (new Date()).getTime()-p.getTime() )
-		// 	break;
-		case 119 : //F8
-		case 120 : //F9
-		case 121 : //F10
-		case 122 : //F11
-		case 123 : //F12
 		case 112 : //F1 (note: F1 can't be disabled in IE7... Motherfuckers)
 		    alert("F#-Button handler");
 		    evt.kill();
@@ -548,34 +489,12 @@ function Keyhandler_Combo(char, evt){
 	
 	switch(String.fromCharCode(char).toUpperCase())
 	{
-	    // case ' ' : //Intellisense
-	    //     Intellisense.word = Editor.getLastWord();
-	    //     Intellisense.display();
-	    //     return false;
 		case 'A' : //SELECT ALL
 			Selection.selectAll(); 	
 			Editor.Goto(Selection.end_row);
 			Curser.move_to(Selection.end_col);
 			return false;
-		// case 'D' : //DUPLICATE LINE TO NEXT
-		// 	TimeDown(20);
-		// 	UndoRedo.write([Editor.Row()+1, 0], EditorContent[Editor.Row()] + "\n");
-		// 	EditorContent = EditorContent.insert( Editor.Row()+1, new Array(EditorContent[Editor.Row()]) )
-		// 	Editor.Buffer = Editor.Buffer.insert( Editor.Row()+1, new Array(Editor.Buffer[Editor.Row()]) )
-		// 	Editor.print();
-		// 	return false; //may do something in some browser...
-		// case 'G' : //GOTO LINE
-		// 	var test = prompt("goto line:","")
-		// 	if( isNaN(test) || test==undefined )
-		// 		return false;
-		// 	Editor.Goto(Math.abs(parseInt(test)));
-		// 	return false;
-		// case 'L' : //SELECT LINE
-		// 	Selection.from_row = Selection.end_row = Editor.Row();
-		// 	Selection.from_col = 0;
-		// 	Selection.end_col = EditorContent[Editor.Row()].length
-		// 	Editor.print();
-		// 	return false;
+		
 		case 'C' : //COPY
 			byid("clipboard").value = Selection.getText();
 			byid("clipboard").select();
@@ -603,50 +522,7 @@ function Keyhandler_Combo(char, evt){
 		    UndoRedo.Undo();
 		    Editor.print();
 		    return false;
-		// case 'Y' : 
-		// 	TimeDown(20);
-		//     UndoRedo.Redo();
-		//     Editor.print();
-		//     return false;
-		// case '1' : //Sort selected
-		// 	TimeDown(20);
-		// 	if( Selection.distance() )
-		// 	{
-		// 		var from = Selection.getStartRow();
-		// 		var to = Selection.getEndRow();
-		// 		UndoRedo.sort([from, to]);
-		// 		var A = EditorContent.splice(from, to-from+1).sort();
-		// 		EditorContent = EditorContent.insert(from , A )
-				
-		// 		//for(var i = from ; i <= to; i++)
-		// 			Editor.reBufferRow(from, to);
-		// 	}
-		// 	Editor.print();
-		// 	return false;
-		    
-		// //---------------------------------------
-		// case 'S' : 
-		// 	if(evt.shiftKey)
-		// 		Editor.fireOnSaveAs();
-		// 	else
-		// 		Editor.fireOnSave();
-				
-		// 	window.focus(); //for IE
-		// 	return false;
 		
-		// /* window.focus(); <-- for IE */
-		
-		// case 'W' : Editor.fireOnTabClose();		 window.focus(); return false;
-		// case 'F' : Editor.fireOnSearch();		 window.focus(); return false;
-		// case 'H' : Editor.fireOnSearchReplace(); window.focus(); return false;
-		// case 'T' : /* Allow new Tab in FF */					 return true;
-		
-		//hotkeys ?
-		
-		// case '2' : alert("hotkey: 2"); 		window.focus(); return false;
-		// case '3' : alert("hotkey: 3"); 		window.focus(); return false;
-		// case '4' : alert("hotkey: 4"); 		window.focus(); return false;
-		// case '5' : alert("hotkey: 5"); 		window.focus(); return false;
 	}
 	
 	return undefined;

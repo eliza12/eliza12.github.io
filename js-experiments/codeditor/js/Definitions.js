@@ -2,30 +2,7 @@
 	Javascript Definition
 *******************************************************************/
 JSDefinition = {
-	GlobalVariables : {
-	/*
-		"MyVar" : { type : "String" },	//var MyVar = "";
-		"MyVar2" : {}						//var MyVar2;
-	*/
-	},
-	Objects : {
-	/* eg:
-		"MyFunction" : { 
-			Private : {
-				"x" : "String",
-				"y" : "String"
-			},
-			Public : {
-				//this.MyVar = 5;
-				"MyVar" : "Number",
-				
-				//this.Funk = function(){}
-				"Funk" : {}
-			}
-		}
-	*/	
-	},
-    GlobalSnippets : {
+	GlobalSnippets : {
 		"for"		: "for(var $1=$2;$1<$3;$1++)\n{\n\t$0\n}\n",
 		"dorev"		: "do\n{\n\t$0\n}while($1);\n",
 		"switch"	: "switch($1)\n{\n\tcase $2:\n\t\tbreak;\n\tdefault:\n\t\tbreak;\n}",

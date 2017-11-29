@@ -1,11 +1,3 @@
-//--
-/// <reference path="Curser.js" />
-/// <reference path="Editor.js" />
-/// <reference path="Initializer.js" />
-/// <reference path="Keyhandler.js" />
-/// <reference path="Selection.js" />
-/// <reference path="UndoRedo.js" />
-/// <reference path="Utilities.js" />
 
 function Class_CopyPaste()
 {
@@ -40,11 +32,7 @@ function Class_CopyPaste()
 		
 		var len = byid("clipboard").value.split('\n');
 		var move = [len[len.length-1].length , arr.length-1 ];
-		
-		//for(var j=Editor.Row(); j< Editor.Row()+len.length; j++){
-			//Editor.reBufferRow();
-		//}
-		//TimeDown(20);
+
 		
 		Editor.reBufferRow(Editor.Row(), Editor.Row()+len.length);
 		

@@ -16,7 +16,7 @@ class FStringCat {
     
     value() {
 		this.list.push(this.accumz);
-		accumz = '';
+		this.accumz = '';
 		this.list = [ this.list.join("") ];
 		return this.list[0];
     };

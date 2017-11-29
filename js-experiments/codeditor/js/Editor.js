@@ -1,17 +1,8 @@
-/// <reference path="CopyPaste.js" />
-/// <reference path="Curser.js" />
-/// <reference path="Initializer.js" />
-/// <reference path="Keyhandler.js" />
-/// <reference path="Selection.js" />
-/// <reference path="UndoRedo.js" />
-/// <reference path="Utilities.js" />
-/// <reference path="Parsers.js" />
-
 
 function Class_Editor()
 {
 	var lines_per_page = (arguments[0]) ? arguments[0] : 10;
-	var cols_per_page = (arguments[1]) ? arguments[1] : 40;
+	var cols_per_page = (arguments[1]) ? arguments[1] : 30;
 	var wrap = (arguments[2]) ? arguments[2] : false;
 	var Language = (arguments[3]) ? arguments[3] : htmlParser;
 	
@@ -21,18 +12,6 @@ function Class_Editor()
 	this.wrappedLines = new Array();
 	this.overWriteMode = false;
 	
-	_editor.style.width = 
-		__content.style.width = 
-		_secondary.style.width = (cols_per_page * fontsize[0]) + "px";
-		
-	_editor.style.height = 
-		// _linenumbers.style.height =
-		__content.style.height = 
-		_secondary.style.height = ((lines_per_page) * fontsize[1]) + "px";
-	
-	_scrollbarX.style.width = (cols_per_page*fontsize[0]) + 'px';
-	
-	// _editorinfo.style.width = (cols_per_page * fontsize[0]) + "px";
 	
 	this.height = function()
 	{
@@ -65,7 +44,6 @@ function Class_Editor()
 	{
 	    if(arguments[0])
 	        wrap = arguments[0];
-	    console.log("wrap = "+wrap);
 	    return wrap;
 	}
 	this.setCode = function(str){
@@ -92,42 +70,38 @@ function Class_Editor()
 		SUBSCRIBABLE EVENTS
 	********************************************************************************************/	
 	
-// 	this.onSave = null;
-// 	this.onSaveAs = null;
-// 	this.onTabClose = null;
-// 	this.onSearch = null;
-// 	this.onSearchReplace = null;
-// //	this.on = null;
+	this.onSave = null;
+	this.onSaveAs = null;
+	this.onTabClose = null;
+	this.onSearch = null;
+	this.onSearchReplace = null;
+//	this.on = null;
 	
-// 	this.fireOnSave = function(){
-// 		if(this.onSave != null){this.onSave(this.getCode());}
-// 		else{ alert("onSave Event (Subscribable)"); }
-// 	}
+	this.fireOnSave = function(){
+		if(this.onSave != null){this.onSave(this.getCode());}
+		else{ alert("onSave Event (Subscribable)"); }
+	}
 	
-// 	this.fireOnSaveAs = function(){
-// 		if(this.onSaveAs != null){this.onSaveAs(this.getCode());}
-// 		else{ alert("onSaveAs Event (Subscribable)"); }
-// 	}
+	this.fireOnSaveAs = function(){
+		if(this.onSaveAs != null){this.onSaveAs(this.getCode());}
+		else{ alert("onSaveAs Event (Subscribable)"); }
+	}
 	
-// 	this.fireOnTabClose = function(){
-// 		if(this.onTabClose != null){this.onTabClose();}
-// 		else{ alert("onTabClose Event (Subscribable)"); }
-// 	}
+	this.fireOnTabClose = function(){
+		if(this.onTabClose != null){this.onTabClose();}
+		else{ alert("onTabClose Event (Subscribable)"); }
+	}
 	
-// 	this.fireOnSearch = function(){
-// 		if(this.onSearch != null){this.onSearch(Selection.getText());}
-// 		else{ alert("onSearch Event (Subscribable)"); }
-// 	}
+	this.fireOnSearch = function(){
+		if(this.onSearch != null){this.onSearch(Selection.getText());}
+		else{ alert("onSearch Event (Subscribable)"); }
+	}
 	
-// 	this.fireOnSearchReplace = function(){
-// 		if(this.onSearchReplace != null){this.onSearchReplace(Selection.getText());}
-// 		else{ alert("onSearchReplace Event (Subscribable)"); }
-// 	}
-	
-//	this.fireOn = function(){
-//		if(this.on != null){this.on();}
-//		else{ alert(" Event (Subscribable)"); }
-//	}
+	this.fireOnSearchReplace = function(){
+		if(this.onSearchReplace != null){this.onSearchReplace(Selection.getText());}
+		else{ alert("onSearchReplace Event (Subscribable)"); }
+	}
+
 	
 	/********************************************************************************************
 		GET TAB INDEX
@@ -136,127 +110,127 @@ function Class_Editor()
 	{
 		var tab = EditorContent[row].match(/^(\s)+/)
 		if(tab==undefined)
-			return"";
+			return "";
 		return tab[0];
 	}
 	/********************************************************************************************
 		SELECT LINE
 	********************************************************************************************/
-	// this.selectLineStart = function(evt)
-	// {
-	//     isPressed = true;
-	//     var e = evt ? evt : window.event;
-	//     var targ = getTarget(e);
-	//     var row = targ.id.split("_")[1] * 1
+	this.selectLineStart = function(evt)
+	{
+	    isPressed = true;
+	    var e = evt ? evt : window.event;
+	    var targ = getTarget(e);
+	    var row = targ.id.split("_")[1] * 1
 	    
-	// 	Selection.release();
-	// 	Selection.from_row = row;
-	// 	Selection.from_col=0;
-	// 	Selection.end_row = row;
-	// 	Selection.end_col=EditorContent[row].length;
-	// 	Curser.move_to(EditorContent[row].length, row)
-	// 	Curser.update();
-	// 	__content.focus();
-	// 	Editor.print(true);
-	// }
-	// this.selectLineEnd = function(evt)
-	// {
-	//     isPressed = false;
- //        var e = evt ? evt : window.event;
-	//     var targ = getTarget(e);
- //        var row = targ.id.split("_")[1] * 1
+		Selection.release();
+		Selection.from_row = row;
+		Selection.from_col=0;
+		Selection.end_row = row;
+		Selection.end_col=EditorContent[row].length;
+		Curser.move_to(EditorContent[row].length, row)
+		Curser.update();
+		__content.focus();
+		Editor.print(true);
+	}
+	this.selectLineEnd = function(evt)
+	{
+	    isPressed = false;
+        var e = evt ? evt : window.event;
+	    var targ = getTarget(e);
+        var row = targ.id.split("_")[1] * 1
         
- //        Selection.end_row = row;
-	//     Selection.end_col=EditorContent[row].length;
-	//     Curser.move_to(EditorContent[row].length, row)
-	//     Curser.update();
-	//     __content.focus();
-	//     Editor.print(true);
-	// }
-	// this.selectLineMove = function(evt)
-	// {
-	//     var e = evt ? evt : window.event;
-	//     var targ = getTarget(e);
-	//     var row = targ.id.split("_")[1] * 1
+        Selection.end_row = row;
+	    Selection.end_col=EditorContent[row].length;
+	    Curser.move_to(EditorContent[row].length, row)
+	    Curser.update();
+	    __content.focus();
+	    Editor.print(true);
+	}
+	this.selectLineMove = function(evt)
+	{
+	    var e = evt ? evt : window.event;
+	    var targ = getTarget(e);
+	    var row = targ.id.split("_")[1] * 1
 	    
-	//     if(isPressed)
-	//     {
- //            Selection.end_row = row;
-	//         Selection.end_col=EditorContent[row].length;
-	//         Curser.move_to(EditorContent[row].length, row)
-	//         Curser.update();
-	//         __content.focus();
-	//         Editor.print(true);
-	//     }
-	// }
+	    if(isPressed)
+	    {
+            Selection.end_row = row;
+	        Selection.end_col=EditorContent[row].length;
+	        Curser.move_to(EditorContent[row].length, row)
+	        Curser.update();
+	        __content.focus();
+	        Editor.print(true);
+	    }
+	}
 	/********************************************************************************************
 		MOVE UP / DOWN
 	********************************************************************************************/
-	// this.move_down = function()
-	// {
-	// 	if( offz_y < EditorContent.length-lines_per_page+10 ){
-	// 		offz_y++;
-	// 		scrollTimeDown(20);
-	// 	}
-	// 	if(arguments[0]!=true)
-	// 		this.print();
+	this.move_down = function()
+	{
+		if( offz_y < EditorContent.length-lines_per_page+10 ){
+			offz_y++;
+			scrollTimeDown(20);
+		}
+		if(arguments[0]!=true)
+			this.print();
 		
-	// 	DisableGoto = true;
-	// 	_scrollbarY.scrollTop = fontsize[1] * offz_y;
-	// }
+		DisableGoto = true;
+		_scrollbarY.scrollTop = fontsize[1] * offz_y;
+	}
 	
-	// this.move_up = function()
-	// {
-	// 	if(offz_y>0){
-	// 		offz_y--;
-	// 		scrollTimeDown(20);
-	// 	}
-	// 	if(arguments[0]!=true)
-	// 		this.print();
+	this.move_up = function()
+	{
+		if(offz_y>0){
+			offz_y--;
+			scrollTimeDown(20);
+		}
+		if(arguments[0]!=true)
+			this.print();
 		
-	// 	DisableGoto = true;
-	// 	_scrollbarY.scrollTop = fontsize[1] * offz_y;
-	// }
+		DisableGoto = true;
+		_scrollbarY.scrollTop = fontsize[1] * offz_y;
+	}
 	/********************************************************************************************
 		PAGE UP / DOWN
 	********************************************************************************************/
-	// this.page_down = function()
-	// {
-	//     if(Curser.Row()+lines_per_page < EditorContent.length)
-	//     {
-	// 		Curser.move_to( Curser.Charcount(), this.Row()+lines_per_page);
-	// 		offz_y += lines_per_page;
-	// 		_scrollbarY.scrollTop = fontsize[1] * offz_y;
-	// 	}else{
-	// 		Curser.move_to( Curser.Charcount(), EditorContent.length-1);
-	// 		offz_y = (EditorContent.length - 10>0)?EditorContent.length - 10 : 0;
-	// 		_scrollbarY.scrollTop = fontsize[1] * offz_y;
-	// 	}
-	// 	if(Selection.active)
-	// 	{
-	// 		Selection.end_row = this.Row();
-	// 	}
-	// 	this.print(true);
-	// }
+	this.page_down = function()
+	{
+	    if(Curser.Row()+lines_per_page < EditorContent.length)
+	    {
+			Curser.move_to( Curser.Charcount(), this.Row()+lines_per_page);
+			offz_y += lines_per_page;
+			_scrollbarY.scrollTop = fontsize[1] * offz_y;
+		}else{
+			Curser.move_to( Curser.Charcount(), EditorContent.length-1);
+			offz_y = (EditorContent.length - 10>0)?EditorContent.length - 10 : 0;
+			_scrollbarY.scrollTop = fontsize[1] * offz_y;
+		}
+		if(Selection.active)
+		{
+			Selection.end_row = this.Row();
+		}
+		this.print(true);
+	}
 	
-	// this.page_up = function()
-	// {
-	// 	if(Curser.Row() > lines_per_page)
-	//     {
-	// 		Curser.move_to( Curser.Charcount(), this.Row()-lines_per_page);
-	// 		offz_y -= lines_per_page;
-	// 		_scrollbarY.scrollTop = fontsize[1] * offz_y;
-	// 	}else{
-	// 		Curser.move_to( Curser.Charcount(), 0);
-	// 		offz_y = 0;
-	// 		_scrollbarY.scrollTop = fontsize[1] * offz_y;
-	// 	}
-	// 	if(Selection.active)
-	// 	{
-	// 		Selection.end_row = this.Row();
-	// 	}
-	// 	this.print(true);
-	// }
+	this.page_up = function()
+	{
+		if(Curser.Row() > lines_per_page)
+	    {
+			Curser.move_to( Curser.Charcount(), this.Row()-lines_per_page);
+			offz_y -= lines_per_page;
+			_scrollbarY.scrollTop = fontsize[1] * offz_y;
+		}else{
+			Curser.move_to( Curser.Charcount(), 0);
+			offz_y = 0;
+			_scrollbarY.scrollTop = fontsize[1] * offz_y;
+		}
+		if(Selection.active)
+		{
+			Selection.end_row = this.Row();
+		}
+		this.print(true);
+	}
 	/********************************************************************************************
 		EDITOR: GET NEXT WORD
 	********************************************************************************************/
@@ -359,10 +333,58 @@ function Class_Editor()
 				str = str.replace(/(<)/g,"&lt;").replace(/(>)/g,"&gt;")
 				str = str.replace(/(\t)/g, "&nbsp;&nbsp;&nbsp;&nbsp;");
 			}
-			// tabs
-			str = str.replace(/^((&nbsp;&nbsp;&nbsp;&nbsp;)+)/,"<b class='tab'>$1</b>");
+			//tabs
+			//str = str.replace(/^((&nbsp;&nbsp;&nbsp;&nbsp;)+)/,"<b class='tab'>$1</b>");
 			str = str.replace("┬", "<span class='select'>")
 			str = str.replace("┴", "</span>")
+			return str + "<br>";
+		}else
+			return "<br>";
+	}
+
+	this.addSelectionToTextarea = function(row)
+	{
+		if( Selection.getStartRow() <= row && Selection.getEndRow() >= row && Selection.distance()){
+			var str = EditorContent[row];
+			
+			if(Selection.getStartRow() != Selection.getEndRow()){
+				if(Selection.getStartRow() == row)
+					str = str.substr(0,Selection.getStartCol()) + "┬" + str.substr(Selection.getStartCol())
+				if(Selection.getEndRow() == row)
+					str = str.substr(0,Selection.getEndCol()) + "┴" + str.substr(Selection.getEndCol())
+				if(row == offz_y && Selection.getStartRow() < offz_y && row < Selection.getEndRow())
+					str = "┬" + str
+			}else{
+				
+				var fc = Math.min(Selection.end_col , Selection.from_col)
+				var ec = Math.max(Selection.end_col , Selection.from_col)
+				
+				var clip1 = str.substr(0,fc)
+				var clip2 = str.substr(fc, ec-fc)
+				var clip3 = str.substr(ec)
+				
+				str = clip1  + clip2 + clip3;
+			}
+
+			str = str.replace(/(&)/g,"&")
+			if(wrap){
+				str = str.replace(/(\t)/g, "		");
+				str = str.replace(/( )/g," ")
+				str = str.replace(/(<)/g,"<").replace(/(>)/g,">")
+				str = str.replace(/(└)/g,"<br>")
+			}else{
+				str = str.replace(/( )/g," ")
+				str = str.replace(/(<)/g,"<").replace(/(>)/g,">")
+				str = str.replace(/(\t)/g, "		");
+			}
+			//tabs
+			//str = str.replace(/^((&nbsp;&nbsp;&nbsp;&nbsp;)+)/,"<b class='tab'>$1</b>");
+			// str = str.replace("┬", "<span class='select'>")
+			// str = str.replace("┴", "</span>")
+			// return str + "<br>";
+
+			console.log(str);
+
 			return str + "<br>";
 		}else
 			return "<br>";
@@ -373,10 +395,10 @@ function Class_Editor()
 	********************************************************************************************/
 	this.fillBuffer = function()
 	{
-		// this.Buffer = new Array();
-		// for(var i=0; i<EditorContent.length; i++){
-		// 	this.Buffer.push( this.format(EditorContent[i]) )
-		// }
+		/*this.Buffer = new Array();
+		for(var i=0; i<EditorContent.length; i++){
+			this.Buffer.push( this.format(EditorContent[i]) )
+		}*/
 		this.Buffer = Language();
 	}
 	this.fillBuffer(); //Run on Init();
@@ -474,67 +496,67 @@ function Class_Editor()
 	/********************************************************************************************
 		JSLINT PARSER
 	********************************************************************************************/
-	// this.errors = [];
-	// this.compile = function()
-	// {
-	// 	//quickfix:
-	// 	if(Language!==jsParser && Language!==htmlParser)
-	// 	{
-	// 		this.errors = [];
-	// 		return;
-	// 	}
-	// 	var NoErrors = JSLINT(EditorContent, {browser:true, laxbreak:true, evil:true});
-	// 	if(NoErrors){
-	// 		if(arguments[1]){ alert("Document is bulletproof!\n\nGood work!"); }
-	// 	}else{
-	// 		this.errors = [];
-	// 		for(var i=0,Bug; Bug=JSLINT.errors[i]; i++){
-	// 		    //this.errors[row].BugPos + "<span id='b_" + this.errors[row].BugIndex + "' class='bug'>&nbsp;</span>
-	// 			this.errors[Bug.line] = QuickFill(Bug.character) + "<span id='b_" + i + "' class='bug'>&nbsp;</span>";
-	// 			/*{ 
-	// 				BugIndex  : i, 
-	// 				BugPos    : QuickFill(RunLength(Bug.line, Bug.character))
-	// 			};*/
-	// 		}
-	// 	}
-	// 	if(arguments[0])
-	// 		this.print(true);
-	// 	if(arguments[1] && JSLINT.errors[0])
-	// 		this.Goto(JSLINT.errors[0].line, JSLINT.errors[0].character);
-	// 	else if(arguments[1])
-	// 		this.Goto(0,0);
-	// }
+	this.errors = [];
+	this.compile = function()
+	{
+		//quickfix:
+		if(Language!==jsParser && Language!==htmlParser)
+		{
+			this.errors = [];
+			return;
+		}
+		var NoErrors = JSLINT(EditorContent, {browser:true, laxbreak:true, evil:true});
+		if(NoErrors){
+			if(arguments[1]){ alert("Document is bulletproof!\n\nGood work!"); }
+		}else{
+			this.errors = [];
+			for(var i=0,Bug; Bug=JSLINT.errors[i]; i++){
+			    //this.errors[row].BugPos + "<span id='b_" + this.errors[row].BugIndex + "' class='bug'>&nbsp;</span>
+				this.errors[Bug.line] = QuickFill(Bug.character) + "<span id='b_" + i + "' class='bug'>&nbsp;</span>";
+				/*{ 
+					BugIndex  : i, 
+					BugPos    : QuickFill(RunLength(Bug.line, Bug.character))
+				};*/
+			}
+		}
+		if(arguments[0])
+			this.print(true);
+		if(arguments[1] && JSLINT.errors[0])
+			this.Goto(JSLINT.errors[0].line, JSLINT.errors[0].character);
+		else if(arguments[1])
+			this.Goto(0,0);
+	}
 	
-	// var QuickFill = function(P)
-	// {
-	// 	if(P<=0) return "";
-	// 	var out = "";
-	// 	do{switch(P%4){
-	// 		case 1 : P-=1; out+="&nbsp;";					break;
-	// 		case 2 : P-=2; out+="&nbsp;&nbsp;";				break;
-	// 		case 3 : P-=3; out+="&nbsp;&nbsp;&nbsp;";		break;
-	// 		case 0 : P-=4; out+="&nbsp;&nbsp;&nbsp;&nbsp;"; break;
-	// 	}}while(P)
+	var QuickFill = function(P)
+	{
+		if(P<=0) return "";
+		var out = "";
+		do{switch(P%4){
+			case 1 : P-=1; out+="&nbsp;";					break;
+			case 2 : P-=2; out+="&nbsp;&nbsp;";				break;
+			case 3 : P-=3; out+="&nbsp;&nbsp;&nbsp;";		break;
+			case 0 : P-=4; out+="&nbsp;&nbsp;&nbsp;&nbsp;"; break;
+		}}while(P)
 		
-	// 	return out;
-	// }
+		return out;
+	}
 	
-	// this.test = function(){ return QuickFill(0) }
+	this.test = function(){ return QuickFill(0) }
 	
-	// this.ExplainErrorOver = function(evt)
-	// {
-	// 	var e = evt ? evt : window.event;
-	// 	var targ = getTarget(e);
-	// 	var errNum = targ.id.split("_")[1] * 1
+	this.ExplainErrorOver = function(evt)
+	{
+		var e = evt ? evt : window.event;
+		var targ = getTarget(e);
+		var errNum = targ.id.split("_")[1] * 1
 		
-	// 	_ErrorExplain.innerHTML = JSLINT.errors[errNum].reason;
-	// 	_ErrorExplain.style.display = "block";
-	// }
-	// this.ExplainErrorOut = function(evt)
-	// {
-	// 	_ErrorExplain.innerHTML = "";
-	// 	_ErrorExplain.style.display = "none";
-	// }
+		_ErrorExplain.innerHTML = JSLINT.errors[errNum].reason;
+		_ErrorExplain.style.display = "block";
+	}
+	this.ExplainErrorOut = function(evt)
+	{
+		_ErrorExplain.innerHTML = "";
+		_ErrorExplain.style.display = "none";
+	}
 	
 	/********************************************************************************************
 		EDITOR.PRINT - DISPLAY CONTENT AND SELECTION
@@ -549,9 +571,11 @@ function Class_Editor()
 		var out = ""; //new FStringCat();
 			//out.push("<div id='errors'></div>");
 		var out2 = new FStringCat();
+
+		var out3 = new FStringCat();
 		
 		var lines = "", bugs = "";
-		var cnt = offz_y;
+		var cnt = offz_y
 		
 		if(EditorContent.length != this.Buffer.length){
 			this.fillBuffer();
@@ -565,15 +589,8 @@ function Class_Editor()
 					this.reBufferRow(this.Row());
 				}
 				out = this.Buffer.slice(offz_y, offz_y+lines_per_page).join("");
-		    /*/
-				var y = offz_y;
-				y = (y > 0) ? (y<20) ? 0 : y-20 : y;
-				//this.Buffer.splice(y, lines_per_page);
-				//this.Buffer = this.Buffer.insert(y, parse(y, y + lines_per_page) );
-				out = parse(y, y+lines_per_page).splice(offz_y+y , y+lines_per_page).join("");
-		    /**/
 		    
-		    // bugs = this.errors.slice(offz_y, offz_y+lines_per_page).join("<br>");
+		    bugs = this.errors.slice(offz_y, offz_y+lines_per_page).join("<br>");
 		    
 		    for(var row=offz_y ; row<offz_y+lines_per_page ; row++)
 		    {
@@ -588,53 +605,42 @@ function Class_Editor()
 		{
 			for(var row=offz_y ; row<offz_y+lines_per_page ; row++)
 				out2.push(this.formatSelection(row));
+				out3.push(EditorContent[row]);
 		}
 		
 		if(!Selection.active || arguments[0]==true)
 		{
 			__content = replaceHtml(__content, out);
 			
-			// if(lastOffSetY != offz_y || lastLength != EditorContent.length)
-			//     _linenumbers.innerHTML = lines;
-			// _errors = replaceHtml(_errors, bugs);
-
-			/*eliza*/
-			/*if(lastOffSetY != offz_y || lastLength != EditorContent.length)
-			{
-			    setTimeout(function()
-			    {
-					//var LineDivs = 
-			    	if(_linenumbers.getElementsByTagName("div")) {
-			        for(var i=0,line; line=_linenumbers.getElementsByTagName("div")[i]; i++)
-			        {
-			            line.onmousedown = Editor.selectLineStart;
-		                line.onmousemove = Editor.selectLineMove;
-		                line.onmouseup = Editor.selectLineEnd;
-			        }
-			      }
-			        					
-			    }, 1);
-			}*/
+			if(lastOffSetY != offz_y || lastLength != EditorContent.length)
+			    // _linenumbers.innerHTML = lines;
+			_errors = replaceHtml(_errors, bugs);
 			
-			//var bugs = 
-			// for(var i=0, Bug; Bug=_errors.getElementsByTagName("span")[i]; i++)
-			// {
-			// 	Bug.onmousemove = Editor.ExplainErrorOver;
-			// 	Bug.onmouseout = Editor.ExplainErrorOut;
-			// }
+			for(var i=0, Bug; Bug=_errors.getElementsByTagName("span")[i]; i++)
+			{
+				Bug.onmousemove = Editor.ExplainErrorOver;
+				Bug.onmouseout = Editor.ExplainErrorOut;
+			}
 		}
-		// _secondary.innerHTML = out2.value();
+		_secondary.innerHTML = out2.value();
+		_sourceCode.innerHTML = out2.value();
+
+		var len = out3.length;
+		while(len < 0) {
+			--len;
+			_sourceCode.value += out3[len];
+		}
 		
 		Curser.update();
 		
-		// if(lastOffSetY != offz_y)				lastOffSetY = offz_y;
-		// if(lastLength != EditorContent.length)	lastLength = EditorContent.length;
+		if(lastOffSetY != offz_y)				lastOffSetY = offz_y;
+		if(lastLength != EditorContent.length)	lastLength = EditorContent.length;
 		
-		// if( Curser.Col()+1 >= Editor.width()+Editor.OffzX() )
-		// 	Curser.scrollX( Curser.Col()+20 );
+		if( Curser.Col()+1 >= Editor.width()+Editor.OffzX() )
+			Curser.scrollX( Curser.Col()+20 );
 			
-		// if( Curser.Col() < Editor.OffzX() )
-		// 	Curser.scrollX( Curser.Col() );
+		if( Curser.Col() < Editor.OffzX() )
+			Curser.scrollX( Curser.Col() );
 	}
 	
 	/********************************************************************************************
@@ -843,10 +849,6 @@ function Class_Editor()
 		    // console.log('left:', type);
 		    showMatch(_xmlFinish, row, j + 1, i + 1);
 		    
-		    /*if(row<this.Row() || row>this.Row()+lines_per_page){
-			    hideMatch(_xmlFinish);
-		    }*/
-		    
 		    Editor.xmlSearchLeft(row, col, type);
 	    }
 	    
@@ -912,8 +914,6 @@ function Class_Editor()
 	    var tag = false;
 		    
 	    switch (type) {
-	    // FIXME: Not sure if these character classes are correct per
-	    //        XML 1.1, at http://www.w3.org/TR/xml11/#sec-common-syn.
 	    case 'instruction': re = /([A-Za-z0-9_:.-]|[^\x00-\x7F])*\?</g; break;
 	    case 'doctype':     re = /EPYTCOD!</g;     break;
 	    case 'comment':     re = /--!</g;          break;
@@ -951,10 +951,6 @@ function Class_Editor()
 	            if (tag && match[2]) ++index, --length;
 	        }
 			
-			/*if (currentrow > (offz_y + lines_per_page)) {
-				hideMatch(_xmlStart);
-				break;
-			}*/
 			
 			if (openClose == 0)
 			{

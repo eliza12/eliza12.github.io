@@ -1,11 +1,3 @@
-/// <reference path="Initializer.js" />
-/// <reference path="Editor.js" />
-/// <reference path="Curser.js" />
-/// <reference path="CopyPaste.js" />
-/// <reference path="Definitions.js" />
-/// <reference path="Selection.js" />
-/// <reference path="UndoRedo.js" />
-/// <reference path="Utilites.js" />
 
 
 /*******************************************************************

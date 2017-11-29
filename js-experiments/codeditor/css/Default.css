@@ -1,71 +1,4 @@
-/* Default Styles                          */
 
-/* HTMLElement fix for non stupid browsers */
-/* 
-* { behavior: url(HTMLElement.htc); }   
-*/
-/* PNG fix for IE6...                      */
-/*
-img, div { behavior: url(iepngfix.htc) } 
-*/
-
-body
-{
-	/*background-color: #999999;*/
-	font-family: "Courier New" , Courier, monospace;
-	padding:0px;
-	margin:0px;
-}
-h1
-{
-	color: White; /*font-family:"Courier New", Courier, monospace;*/
-	font-size: 25pt;
-	margin: 15px 0px 0px 53px;
-	position: absolute;
-	z-index: 3;
-}
-h1.shadow
-{
-	position: absolute; /*font-family:"Courier New", Courier, monospace;*/
-	font-size: 25pt;
-	color: Black;
-	margin: 18px 0px 0px 57px;
-	z-index: 2;
-}
-#writeroot
-{
-	background-color: #ccc;
-	border: 1px solid #000;
-	display: none;
-	height: 400px; /*font-family: "Courier New", Courier, monospace;*/
-	position: absolute;
-	top: 100px;
-	width: 300px;
-	right: 0px;
-	z-index: 10;
-	overflow: auto;
-}
-#timer
-{
-	left: 55px;
-	position: absolute;
-	top: 640px;
-}
-#linenumbers
-{
-	background-color: White;
-	color: Black;
-	height: 180px;
-	left: -70px;
-	position: absolute;
-	text-align: right;
-	width: 59px;
-	z-index: 1;
-	line-height: 18px;
-	font-size:16px;
-	padding-bottom: 17px;
-	padding-right: 10px;
-}
 #curser
 {
 	position: absolute;
@@ -78,19 +11,11 @@ h1.shadow
 #editor
 {
 	position: relative;
-	top: 46px;
-	left: 150px; 
-	width: 400px;
-	height: 180px;
+	width: 96%;
+	height: 510px;
+	/*background-color: blue;*/
 }
-html>body #editor
-{
-	position: relative;
-	top: 50px;
-	left: 150px; 
-	width: 400px; /*-- Width x 10 pixels --*/
-	height: 180px; /*-- Height x 18 pixels --*/
-}
+
 #contentContainer
 {
 	position: absolute;
@@ -104,7 +29,6 @@ html>body #editor
 	font-size:16px;
 	z-index: 4;
 	overflow: hidden;
-	/*overflow-y: scroll;*/
 }
 #content, #errors
 {
@@ -121,11 +45,7 @@ html>body #editor
 	overflow: hidden;
 	white-space: nowrap;
 }
-#errors 
-{
-	filter:alpha(opacity=100);
-	z-index:5;
-}
+
 #cursorContainer
 {
 	position: absolute;
@@ -162,36 +82,17 @@ html>body #editor
 	cursor:pointer;
 	text-decoration:none;
 }
-.bug
-{
-	text-decoration:underline;
-	color:#F22;
-	z-index:10;
-	position:absolute;
-}
+
 #secondary
 {
 	position: absolute;
 	top: 0px;
 	left: 0px;
-	width: 100%;
-	height: 100%;
-	line-height: 18px;
-	font-size:16px;
 	z-index: 1;
 	overflow: hidden;
 	white-space: nowrap;
 }
-#errorexplain
-{
-	background-color:Khaki;
-	padding:3px;
-	border:1px solid #000;
-	position:absolute;
-	z-index:10;
-	font-size:8pt;
-	display:none;
-}
+
 #scrollbarY
 {
 	position: absolute;

@@ -1,6 +1,3 @@
-/// <reference path="Editor.js" />
-/// <reference path="Initializer.js" />
-/// <reference path="Curser.js" />
 
 function Class_Selection(){
 	this.from_row = 0; //which line (row)

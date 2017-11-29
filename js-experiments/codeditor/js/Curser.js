@@ -1,10 +1,3 @@
-/// <reference path="CopyPaste.js" />
-/// <reference path="Editor.js" />
-/// <reference path="Initializer.js" />
-/// <reference path="Keyhandler.js" />
-/// <reference path="Selection.js" />
-/// <reference path="UndoRedo.js" />
-/// <reference path="Utilities.js" />
 
 function Class_Curser(){
 	var row = 0;
@@ -82,7 +75,6 @@ function Class_Curser(){
 		}
 		
 		setCurser();
-		//return (Editor.Row()>EditorContent.length-1)? true : false;
 	};
 	
 	this.move_le = function()
@@ -371,22 +363,8 @@ function Class_Curser(){
 			_pre1.style.display = "none";
 		}
 		
-		// PrintEditorInfo();
 	};
 	
-	/*****************************************************************************
-		RENDER EDITOR INFO
-	*****************************************************************************/
-	/*var PrintEditorInfo = function()
-	{
-		_editorinfo.innerHTML = 
-			"Row: " + row + //Editor.Row() + 
-			"\tCol: " + col + 
-			//" Line Length: " + getEditorLength() +
-			"\tChar:" + CharCount
-			//" Selection [row,char]:(" + Selection.from_row + "," + Selection.from_col + ")->" +
-			//					 "(" + Selection.end_row + "," + Selection.end_col + "):" + Selection.active;
-	};*/
 	
 	/*****************************************************************************
 		UTILITY METHOD: GET LENGTH OF CURRENT LINE
