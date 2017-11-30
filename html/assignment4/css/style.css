@@ -42,6 +42,7 @@ body {
 
 .nav-bar ul li:last-child:hover {
 	background-color: transparent;
+	box-shadow: none;
 }
 
 .nav-bar ul li a:hover {

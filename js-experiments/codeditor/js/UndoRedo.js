@@ -209,7 +209,7 @@ function Class_UndoRedo()
 	
 	/*************************************
 		INPUT EVENTS
-	*************************************/
+	************************************
 	// this.swap = function(coord) //line1 <--> line2
 	// {
 	// 	var B = new Bookmark(coord, "swap", "");
@@ -234,7 +234,7 @@ function Class_UndoRedo()
 	// 	    var B = new Bookmark(coord, "sort", Selection.getText() );
 	// 	    store(B);
 	// 	}
-	// }
+	// }*/
 	
 	this.write = function(coord, text)
 	{
