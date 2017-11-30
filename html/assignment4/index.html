@@ -30,15 +30,15 @@
 							<li><a href="#">SERVICES<a href=""></li>
 							<li class="dropdown-menu"><a href="#"><i class="fa fa-angle-down" aria-hidden="true"></i>PORTFOLIO
 								<ul class="dropdown-menu-items">
-									<li><a href="">dropdown 1</a></li>
-									<li><a href="">dropdown 2</a></li>
-									<li><a href="">dropdown 3</a></li>
+									<li><a href="">menu 1</a></li>
+									<li><a href="">menu 2</a></li>
+									<li><a href="">menu 3</a></li>
 								</ul> </a>
 							</li>
 							<li><a href="#">BLOG</a></li>
 							<li><a href="#">FEATURES</a></li>
 							<li><a href="#">CONTACTS</a></li>
-							<li class="search"><a href="#"><i class="fa fa-search"></i></a>
+							<li class="search" id="search"><a href="#"><i class="fa fa-search"></i></a>
 								<div class="search-box">
 									<form>
 										<input type="text" name="search" placeholder="Search">
@@ -66,30 +66,25 @@
 		<div class="body-wrapper">
 			<div class="body-container">
 				<div class="headlines clearfix">
-					<h2 class="clearfix"><a href="#">Donec faucibus ultricies congue</a></h2>
+					<h2 class="clearfix" id="mainHeading"></h2>
+					
 					<div class="headline-sliders">
 						<ul>
-							<li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+							<li id="headingSlideLeft"><a href="#"><i class="fa fa-angle-left"></i></a></li>
+							<li id="headingSlideRight"><a href="#"><i class="fa fa-angle-right"></i></a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="slider-container">
 					<div class="image-slider">
-						<ul>
-							<li>hello</li>
-							<li class="active no-image"></li>
-							<li>hello</li>
+						<ul id="imageSliderUL" class="active">
 						</ul>
-						<span class="slide-left"><a href="#"><i class="fa fa-angle-double-left"></i></a></span>		
-						<span class="slide-right"><a href="#"><i class="fa fa-angle-double-right"></i></a></span>		
+						<span id="imageslideLeft" class="slide-left"><a href="#"><i class="fa fa-angle-double-left"></i></a></span>		
+						<span id="imageslideRight" class="slide-right"><a href="#"><i class="fa fa-angle-double-right"></i></a></span>		
 					</div>
-					<div class="slide-indicator clearfix">
-						<ul>
-							<li><a href="#">text</a></li>
-							<li class="current-slide"><a href="#">text</a></li>
-							<li><a href="#">text</a></li>
-						</ul>
+					<div class="slide-indicator">
+							<ul id="slideIndicatorUl">
+							</ul>
 					</div>
 				</div>
 				<div class="col-2-layout clearfix">
@@ -131,19 +126,20 @@
 						</div>
 					</div>
 				</div>
+				<a name="recent-projects"></a>
 				<div class="related-projects">
 					<div class="heading-bar clearfix">
 						<h2>RELATED PROJECTS</h2>
-						<div class="project-sliders">
+						<div class="project-sliders" id="projectSliders">
 							<ul>
-								<li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-								<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+								<li id="slideProjectLeft"><a href="#recent-projects"><i class="fa fa-angle-left"></i></a></li>
+								<li id="slideProjectRight"><a href="#recent-projects"><i class="fa fa-angle-right"></i></a></li>
 							</ul>
 						</div>
 					</div>
-					<div class="block-sets clearfix">
+					<div class="block-sets clearfix" id="projectsContainer">
 						<ul>
-							<li class="no-image">
+							<li><img src="images/project1.jpg">
 								<div>
 									<div class="clearfix">
 										<a href="#"><i class="fa fa-eye"></i></a>
@@ -152,7 +148,7 @@
 									<p><a href="#">Lorem ipsum</a></p>
 								</div>
 							</li>
-							<li><img src="images/project-1.jpg">
+							<li><img src="images/project2.png">
 								<div>
 									<div class="clearfix">
 										<a href="#"><i class="fa fa-eye"></i></a>
@@ -161,7 +157,7 @@
 									<p><a href="#">Lorem ipsum</a></p>
 								</div>
 							</li>
-							<li><img src="images/project-1.jpg">
+							<li><img src="images/project3.jpg">
 								<div>
 									<div class="clearfix">
 										<a href="#"><i class="fa fa-eye"></i></a>
@@ -170,7 +166,45 @@
 									<p><a href="#">Lorem ipsum</a></p>
 								</div>
 							</li>
-							<li><img src="images/project-2.jpg">
+							<li><img src="images/project4.jpg">
+								<div>
+									<div class="clearfix">
+										<a href="#"><i class="fa fa-eye"></i></a>
+										<a target="_blank" href="#"><i class="fa fa-link"></i></a>
+									</div>
+									<p><a href="#">A river</a></p>
+								</div>
+							</li>
+						</ul>
+						<ul>
+							<li><img src="images/dog1.jpg">
+								<div>
+									<div class="clearfix">
+										<a href="#"><i class="fa fa-eye"></i></a>
+										<a target="_blank" href=""><i class="fa fa-link"></i></a>
+									</div>
+									<p><a href="#">Lorem ipsum</a></p>
+								</div>
+							</li>
+							<li><img src="images/dog2.jpg">
+								<div>
+									<div class="clearfix">
+										<a href="#"><i class="fa fa-eye"></i></a>
+										<a target="_blank" href="#"><i class="fa fa-link"></i></a>
+									</div>
+									<p><a href="#">Lorem ipsum</a></p>
+								</div>
+							</li>
+							<li><img src="images/dog3.jpg">
+								<div>
+									<div class="clearfix">
+										<a href="#"><i class="fa fa-eye"></i></a>
+										<a target="_blank" href="#"><i class="fa fa-link"></i></a>
+									</div>
+									<p><a href="#">Lorem ipsum</a></p>
+								</div>
+							</li>
+							<li><img src="images/dog4.jpg">
 								<div>
 									<div class="clearfix">
 										<a href="#"><i class="fa fa-eye"></i></a>
@@ -253,5 +287,9 @@
 			</div>
 		</div>
 	</div>
+
+	<script type="text/javascript" src="js/searchButton.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+	<script type="text/javascript" src="js/mainImageSlider.js"></script>
 </body>
 </html>

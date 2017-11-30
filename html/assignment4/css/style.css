@@ -35,6 +35,9 @@ body {
 .nav-bar ul li:hover {
 	background-color: #62a29e;
 	border-radius: 5px;
+	-webkit-box-shadow: 0px 3px 0px 0px rgba(82,139,134,1);
+  -moz-box-shadow: 0px 3px 0px 0px rgba(82,139,134,1);
+	box-shadow: 0px 3px 0px 0px rgba(82,139,134,1);
 }
 
 .nav-bar ul li:last-child:hover {
@@ -53,8 +56,8 @@ body {
 	font-size: 16px;
 }
 
-.nav-bar ul li.search:hover .search-box{
-	display: block;
+.nav-bar ul li.search .search-box{
+	display: none;
 	width: 120px;
 	border: 5px solid #62a29e;
 	border-radius: 5px;
@@ -115,6 +118,7 @@ body {
 .header-bottom p {
 	font-family: 'Open Sans Bold', sans-serif;
 	font-size: 20px;
+	color: #7f8c8c;
 }
 
 .breadcrumbs ul li a {
@@ -143,17 +147,23 @@ body {
 }
 
 .headlines h2 a {
-	color: #000;
+	color: #7f8c8c;
 	font-size: 25px;
 }
 
 .headline-sliders ul li, .project-sliders ul li {
 	
 	background-color: #98a3a3;
+	-webkit-box-shadow: 0px 3px 0px 0px rgba(127,140,140,1);
+  -moz-box-shadow: 0px 3px 0px 0px rgba(127,140,140,1);
+	box-shadow: 0px 3px 0px 0px rgba(127,140,140,1);
 }
 
 .headline-sliders ul li:hover, .project-sliders ul li:hover {
 	background: #e2534b;
+	-webkit-box-shadow: 0px 3px 0px 0px rgba(226,83,25,1);
+  -moz-box-shadow: 0px 3px 0px 0px rgba(226,83,25,1);
+	box-shadow: 0px 3px 0px 0px rgba(226,83,25,1);
 }
 
 .headline-sliders ul li a {
@@ -164,6 +174,9 @@ body {
 .image-slider ul li {
 	background: #f8f8f8;
 	text-align: center;
+	-webkit-box-shadow: 0px 3px 0px 0px rgba(229,230,230,1);
+  -moz-box-shadow: 0px 3px 0px 0px rgba(229,230,230,1);
+	box-shadow: 0px 3px 0px 0px rgba(229,230,230,1);
 }
 
 .image-slider ul li.active {
@@ -262,8 +275,19 @@ body {
 	font-weight: bold;
 }
 
+.block-sets ul {
+	display: none;
+}
+
+.block-sets ul.active {
+	display: block;
+}
+
 .block-sets ul li  {
 	background: #fff;
+	-webkit-box-shadow: 0px 3px 0px 0px rgba(229,230,230,1);
+  -moz-box-shadow: 0px 3px 0px 0px rgba(229,230,230,1);
+	box-shadow: 0px 3px 0px 0px rgba(229,230,230,1);
 }
 
 .block-sets ul li.no-image{
@@ -347,6 +371,7 @@ body {
 
 .company-links h2 {
 	font-size: 20px;
+	color: #3b6360;
 }
 
 .concerning-links div ul.fa-ul {
@@ -364,6 +389,7 @@ body {
 
 .community-links h2 {
 	font-size: 20px;
+	color: #3b6360;
 }
 
 .community-links ul li {
@@ -394,7 +420,7 @@ body {
 .from-blog ul li div.image-description p {
 	font-style: normal;
 	font-weight: normal;
-	color: #000;
+	color: #3b6360;
 }
 
 .from-blog ul li div.image-description p a{
