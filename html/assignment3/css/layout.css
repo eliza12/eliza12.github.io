@@ -180,15 +180,23 @@
 }
 
 .slide-indicator {
-	padding: 13px 0px;/*
-	display: flex;
-	justify-content: center;*/
+	padding: 13px 0px;
+	width: 100%;
+	margin: 0 auto;
+	float: left;
+	/*display: flex;*/
+	justify-content: center;
 }
 
 .slide-indicator ul {
 	list-style-type: none;
+	margin: 0 auto;
+	display: table;
+	/*float:left;*/
+	/*justify-content : center;*/
+	/*
 	margin-left: 495px;
-	margin-right: 465px;
+	margin-right: 465px;*/
 }
 
 .slide-indicator ul li{
