@@ -369,6 +369,10 @@ body {
 	font-weight: bold;
 }
 
+.about-modus ul li a {
+	color: #fff;
+}
+
 
 .company-links h2 {
 	font-size: 20px;

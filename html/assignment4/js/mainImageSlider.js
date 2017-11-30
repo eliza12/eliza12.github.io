@@ -119,8 +119,7 @@ function sliderMain() {
 	var imageIndicatorList = slideIndicatorUl.getElementsByTagName("li");
 
 	imageslideLeft.onclick = function() {
-		if (imgIndex > 0 && that.flag==true) {
-			that.flag = false;
+		if (imgIndex > 0) {
 			imageList[imgIndex].className = "";
 			imageIndicatorList[imgIndex].className = "";
 			--imgIndex;
@@ -128,7 +127,6 @@ function sliderMain() {
 			imageList[imgIndex].style.opacity = '0';
 			fadeIn(imageList[imgIndex], imageList[imgIndex].style.opacity);
 			currentIndex = imgIndex;
-			that.flag = true;
 
 			imageIndicatorList[imgIndex].className = 'current-slide';
 		}
@@ -136,8 +134,7 @@ function sliderMain() {
 
 	imageslideRight.onclick = function() {
 		var listLength = imageList.length;
-		if(imgIndex < listLength-1 && that.flag==true) {
-			that.flag = false;
+		if(imgIndex < listLength-1) {
 			imageList[imgIndex].className = "";
 			imageIndicatorList[imgIndex].className = "";
 			++imgIndex;
@@ -146,7 +143,6 @@ function sliderMain() {
 			fadeIn(imageList[imgIndex], imageList[imgIndex].style.opacity);
 			currentIndex = imgIndex;
 
-			that.flag = true;
 
 			imageIndicatorList[imgIndex].className = 'current-slide';
 		}
