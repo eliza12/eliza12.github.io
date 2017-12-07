@@ -7,23 +7,23 @@
 }
 
 .phone-number {
-	font-size: 36px;
+	font-size: 52px;
 	color: #3a3a3a;
 	font-family: 'Lato', sans-serif;
 }
 
 .user-icon {
-	font-size: 36px;
+	font-size: 52px;
 	background: transparent;
 	color: #3a3a3a;
-	border: 1px solid #3a3a3a;
+	border: none;
 	padding: 4px 12px;
 	border-radius: 5px;
 }
 
 .user-nav ul li a {
 	display: block;
-	font-size: 36px;
+	font-size: 48px;
 	color: #3a3a3a;
 	font-family: 'Lato', sans-serif;
 }
@@ -33,24 +33,25 @@
 }
 
 .menu-icon {
-	font-size: 48px;
+	font-size: 52px;
 	border: 2px solid #3a3a3a;
 	background: transparent;
 	color: #3a3a3a;
 	padding: 4px 10px;
 	border-radius: 5px;
+	margin: 0px 10px;
 }
 
 .main-nav-bar ul li a {
 	color: #000;
 	font-family: 'PlayFair Display', serif;
 	font-style: italic;
-	font-size: 42px;
+	font-size: 48px;
 
 }
 
 .social-network-links ul li a {
-	font-size: 36px;
+	font-size: 48px;
 	color: #d8bd8e;
 	border: 2px solid #d8bd8e;
 	border-radius: 50%;

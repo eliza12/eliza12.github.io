@@ -1,5 +1,8 @@
 .main-container-wrapper {
-	min-width: 100%;
+	width: 100%;
+	width: 100vw;
+	background-color: gray;
+
 }
 
 .header-top-wrapper {
@@ -32,6 +35,7 @@
 .user-account-info {
 	width: auto;
 	float: right;
+	padding: 4px 6px;
 }
 
 .user-nav {
@@ -45,8 +49,9 @@
 	text-align: right;
 }
 
-.user-nav ul li {
-	padding: 8px 4px;
+.user-nav ul li a {
+	display: block;
+	padding: 16px 8px;
 }
 
 .header-bottom-wrapper {
@@ -70,6 +75,7 @@
 }
 
 .nav-bar {
+	display: none;
 	width: 100%;
 }
 
@@ -83,11 +89,11 @@
 
 .main-nav-bar ul li a {
 	display: block;
-	padding: 12px 6px;
+	padding: 16px 6px;
 }
 
 .social-network-links {
-	padding: 14px 0px;
+	padding: 16px 0px;
 }
 
 .social-network-links ul {
@@ -102,8 +108,8 @@
 
 .social-network-links ul li a {
 	display: block;
-	width: 46px;
-	height: 36px;
+	width: 52px;
+	height: 42px;
 	padding: 6px 0px;
 }
 
@@ -111,4 +117,10 @@
 	width: auto;
 	padding: 14px 14px;
 	margin: 0 6px;
+}
+
+.slider {
+	width: 100vw;
+	background-color: red;
+
 }
