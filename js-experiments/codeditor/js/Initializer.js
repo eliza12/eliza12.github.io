@@ -1,51 +1,51 @@
 
 
-let EditorContent = new Array();
-let writeroot;
-let hasFocus = false;
-let wheelx, wheely; //BugFix for Firefox 2.0 wheel event :-(
-let isScrolling = false;
-let ctrlPressed = false;
-let clickspeed = 400;
+var EditorContent = new Array();
+var writeroot;
+var hasFocus = false;
+var wheelx, wheely; //BugFix for Firefox 2.0 wheel event :-(
+var isScrolling = false;
+var ctrlPressed = false;
+var clickspeed = 400;
 
-let Curser;
-let Editor;
-let Selection;
-let CopyPaste;
-let UndoRedo;
-let Intellisense;
-let ContextMenu;
+var Curser;
+var Editor;
+var Selection;
+var CopyPaste;
+var UndoRedo;
+var Intellisense;
+var ContextMenu;
 
 //placement of editor
-let editor_x = 80;
-let editor_y = 50;
-let cols = 80;
-let rows = 30;
-let fontsize = [10,18];
+var editor_x = 80;
+var editor_y = 50;
+var cols = 80;
+var rows = 30;
+var fontsize = [10,18];
 
 //markers
-let _post1;
-let _post2;
-let _pre1;
-let _pre2;
-let _xmlStart;
-let _xmlFinish;
+var _post1;
+var _post2;
+var _pre1;
+var _pre2;
+var _xmlStart;
+var _xmlFinish;
 
 //editor
-let __content;
-let _curser;
-let _errors;
-let _editorinfo;
-let _editor;
-let _contentContatiner;
-let _secondary;
-let _linenumbers;
-let _scrollbarY;
-let _scrollbarX;
-let _contextmenu;
-let _intellisense;
-// let _errors;
-let _ErrorExplain;
+var __content;
+var _curser;
+var _errors;
+var _editorinfo;
+var _editor;
+var _contentContatiner;
+var _secondary;
+var _linenumbers;
+var _scrollbarY;
+var _scrollbarX;
+var _contextmenu;
+var _intellisense;
+// var _errors;
+var _ErrorExplain;
 
 
 window.onblur = function()
@@ -119,7 +119,7 @@ window.onload = function()
 ******************************************************************************/
 function detectShiftPress(e)
 {
-	let evt = e ? e : window.event;
+	var evt = e ? e : window.event;
 	
 	if(evt.keyCode==16 && Selection.distance())
 	{
@@ -135,7 +135,7 @@ function detectShiftPress(e)
 
 function detectShiftRelease(e)
 {
-	let evt = e ? e : window.event;
+	var evt = e ? e : window.event;
 	
 	if(evt.keyCode==16)//SHIFT
 	{
@@ -151,13 +151,13 @@ function detectShiftRelease(e)
 	Combo = false //detectShiftRelease is the last function call in a key event
 }
 
-let nonChar = false;
-let Combo = false;
+var nonChar = false;
+var Combo = false;
 function handleKeys(e) 
 {
 	isScrolling = false;
-	let char;
-    let evt = (e) ? e : window.event;       //IE reports window.event not arg
+	var char;
+    var evt = (e) ? e : window.event;       //IE reports window.event not arg
     
     if (!evt.stopPropagation){
 		evt.stopPropagation = function() {this.cancelBubble = true;};
@@ -176,7 +176,7 @@ function handleKeys(e)
         if (char < 16 ||                    // non printables
             (char > 16 && char < 32) ||     // avoid shift
             (char > 32 && char < 41) ||     // navigation keys
-            char == 46                    // Delete Key (Add to these if you need)
+            char == 46                    // Devare Key (Add to these if you need)
         )
         {
             nonChar = true;
@@ -193,7 +193,7 @@ function handleKeys(e)
     
     if(evt.ctrlKey && !nonChar && evt.type == "keydown")
     {
-		let tmp = Keyhandler_Combo(char, evt) //love tristate boolean :D
+		var tmp = Keyhandler_Combo(char, evt) //love tristate boolean :D
 		Combo = (tmp == undefined) ? Combo : tmp;
 		
 		if(!Combo){
@@ -208,83 +208,11 @@ function handleKeys(e)
         evt.returnValue = false;            // and stop it!
 }
 
-/******************************************************************************
-	MOUSE WHEEL EVENT HANDLERS
-******************************************************************************/
-// function wheel(event)
-// {
-// 	let delta = 0;
-// 	if (!event) // For IE.
-// 		event = window.event;
-// 	if (event.wheelDelta) { // IE/Opera. 
-// 		delta = event.wheelDelta/120;
-	
-// 	// In Opera 9, delta differs in sign as compared to IE.
-// 	if (window.opera)
-// 		delta = -delta;
-// 	}else if (event.detail) { 
-// 		// Mozilla
-// 		delta = -event.detail/3;
-// 	}
-	
-// 	//Target for scroll event
-// 	let targ;
-// 	if (event.target) 
-// 		targ = event.target;
-// 	else if (event.srcElement) 
-// 		targ = event.srcElement;
-// 	if (targ.nodeType == 3)
-// 	{ 
-// 		// defeat Safari bug
-// 		targ = targ.parentNode;	
-// 	}
-	
-// 	let mx=my=0;
-// 	if(Selection.active){
-// 		mx = wheelx - editor_x + scrollOffset()[0] + fontsize[0]; 
-// 		my = wheely - editor_y + scrollOffset()[1] + fontsize[1];
-// 	}
-// 	//Handle non-zero delta, only on content-div
-// 	if (delta && (targ.id == "content" 
-// 				|| targ.id == "errors"
-// 				|| targ.className == "bug"
-// 				|| targ.id == "contentContainer"
-// 				|| targ.parentNode.id == "content" 
-// 				|| targ.parentNode.className ))
-// 		handle(delta, mx, my);
-	
-	
-// 	//Defeat event
-// 	if (event.preventDefault)
-// 		event.preventDefault();
-// 	event.returnValue = false;
-// }
 
-//Mouse Scroll handler
-// function handle(delta, mx, my)
-// {
-// 	if (delta < 0)
-// 		for(let x=0;x<3;x++)
-// 			Editor.move_down(true)
-// 	else
-// 		for(let x=0;x<3;x++)
-// 			Editor.move_up(true)
-	
-// 	if(Selection.active){
-// 		let coord = Curser.getMousePos([mx, my]);
-// 		Selection.end_row = coord[0]
-// 		Selection.end_col = coord[1]			
-// 	}
-	
-// 	_ErrorExplain.style.display = "none";
-// 	isScrolling = true;
-// 	Editor.print(true);
-// 	scrollTimeDown(50)
-// }
 /******************************************************************************
 	SCROLL OPTIMIZER
 ******************************************************************************/
-let scollTimer = 0;
+var scollTimer = 0;
  isScrolling = false;
 function scrollTimeDown(count)
 {
@@ -308,11 +236,11 @@ function scrollTick()
 /******************************************************************************
 	SCROLLBAR HANDLER
 ******************************************************************************/
-let DisableGoto = false;
+var DisableGoto = false;
 function scrollHandlerY(evt)
 {
-	let e = evt ? evt : window.event;
-	let target = getTarget(e);
+	var e = evt ? evt : window.event;
+	var target = getTarget(e);
 	
 	if(!DisableGoto) //prevent event refire, from Editor
 	{
@@ -331,19 +259,19 @@ function scrollHandlerY(evt)
 }
 function scrollHandlerX(evt)
 {
-	let e = evt ? evt : window.event;
-	let target = getTarget(e);
+	var e = evt ? evt : window.event;
+	var target = getTarget(e);
 	
 	Curser.scrollX( target.scrollLeft/fontsize[0] );
 }
 /******************************************************************************
 	MOUSE DOWN -> MOVE -> UP -> CLICK
 ******************************************************************************/
-let isPressed = false
+var isPressed = false
 function mousedownEvtHandler(evt)
 { 
-	let e = evt ? evt : window.event;
-	let targ = getTarget(e);
+	var e = evt ? evt : window.event;
+	var targ = getTarget(e);
 	isPressed = true;
 		
 	//detect mouseClick event
@@ -359,18 +287,18 @@ function mousedownEvtHandler(evt)
 	{
 		if(e.button == 2)
 		{
-			let left = (e.clientX - editor_x)-10;
-			let top = (e.clientY- editor_y)-6;
+			var left = (e.clientX - editor_x)-10;
+			var top = (e.clientY- editor_y)-6;
 			// ContextMenu.show(top,left) ;
 			return false;
 		}
 		
 		// ContextMenu.hide();
 		
-		let pageX = scrollOffset()[0];
-		let pageY = scrollOffset()[1];
+		var pageX = scrollOffset()[0];
+		var pageY = scrollOffset()[1];
 		
-		let coord = Curser.getMousePos([
+		var coord = Curser.getMousePos([
 			e.clientX - editor_x + pageX + fontsize[0], 
 			e.clientY - editor_y + pageY + fontsize[1]
 		]);
@@ -391,7 +319,7 @@ function mousedownEvtHandler(evt)
 
 function mousemoveEvtHandler(evt)
 { 
-	let e = evt ? evt : window.event;
+	var e = evt ? evt : window.event;
 	if(e.button == 2)
 		return false;
 		
@@ -403,10 +331,10 @@ function mousemoveEvtHandler(evt)
 	
 	if(Selection.active && isPressed)
 	{
-		let pageX = scrollOffset()[0];
-		let pageY = scrollOffset()[1];
+		var pageX = scrollOffset()[0];
+		var pageY = scrollOffset()[1];
 	
-		let coord = Curser.getMousePos([
+		var coord = Curser.getMousePos([
 			e.clientX - editor_x + pageX + fontsize[0], 
 			e.clientY - editor_y + pageY + fontsize[1]
 		]);
@@ -420,11 +348,11 @@ function mousemoveEvtHandler(evt)
 
 function mouseupEvtHandler(evt)
 { 
-	let e = evt ? evt : window.event;
+	var e = evt ? evt : window.event;
 	if(e.button == 2)
 		return false;
 		
-	let targ = getTarget(e);
+	var targ = getTarget(e);
 	isPressed = false;
 	
 	if(targ.id=="content" 
@@ -434,10 +362,10 @@ function mouseupEvtHandler(evt)
 	|| targ.parentNode.className
 	|| targ.className == "bug")
 	{
-		let pageX = scrollOffset()[0];
-		let pageY = scrollOffset()[1];
+		var pageX = scrollOffset()[0];
+		var pageY = scrollOffset()[1];
 		
-		let coord = Curser.getMousePos([
+		var coord = Curser.getMousePos([
 			e.clientX - editor_x + pageX + fontsize[0], 
 			e.clientY - editor_y + pageY + fontsize[1]
 		]);
@@ -459,29 +387,29 @@ function mouseupEvtHandler(evt)
 	return document.defaultAction
 }
 
-let mouseclick = false;
+var mouseclick = false;
 function detectClick(){
 	mouseclick = false;
 }
 
-let mousedoubleclick = false;
+var mousedoubleclick = false;
 function detectDoubleClick(){
 	mousedoubleclick = false; 
 }
 
 function clickEvtHandler(e)
 { 
-	let e = e ? e : window.event;
+	var e = e ? e : window.event;
 	window.focus();
 	
 	if(mousedoubleclick || e.ctrlKey)
 	{
 		mousedoubleclick = false;
 		
-		let pageX = scrollOffset()[0];
-		let pageY = scrollOffset()[1];
+		var pageX = scrollOffset()[0];
+		var pageY = scrollOffset()[1];
 	
-		let coord = Curser.getMousePos([
+		var coord = Curser.getMousePos([
 			e.clientX - editor_x + pageX + fontsize[0], 
 			e.clientY - editor_y + pageY + fontsize[1]
 		]);
