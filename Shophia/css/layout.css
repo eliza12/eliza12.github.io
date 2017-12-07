@@ -35,8 +35,9 @@
 }
 
 .user-nav {
-	/*display: none;*/
-	padding: 2px 0px;
+	display: none;
+	padding: 2px 4px;
+	margin-top: 4px;
 }
 
 .user-nav ul {
@@ -48,3 +49,66 @@
 	padding: 8px 4px;
 }
 
+.header-bottom-wrapper {
+	padding: 24px 0px;
+}
+
+.header-bottom {
+	width: 81.25em; /* 1290px + 5px + 5px*/
+	margin: 0 auto;
+	padding: 0 0.38461538461%;
+}
+
+.menu-icon {
+	width: auto;
+	float: left;
+}
+
+.logo {
+	width: 17.5384615385%;
+	float: right;
+}
+
+.nav-bar {
+	width: 100%;
+}
+
+.main-nav-bar ul {
+	list-style-type: none;
+}
+
+.main-nav-bar ul li {
+
+}
+
+.main-nav-bar ul li a {
+	display: block;
+	padding: 12px 6px;
+}
+
+.social-network-links {
+	padding: 14px 0px;
+}
+
+.social-network-links ul {
+	list-style-type: none;
+}
+
+.social-network-links ul li {
+	width: auto;
+	float: left;
+	padding: 0px 6px;
+}
+
+.social-network-links ul li a {
+	display: block;
+	width: 46px;
+	height: 36px;
+	padding: 6px 0px;
+}
+
+.currencies {
+	width: auto;
+	padding: 14px 14px;
+	margin: 0 6px;
+}
